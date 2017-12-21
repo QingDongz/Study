@@ -28,7 +28,7 @@
     <context:component-scan base-package="com.bpzj.dao" />
 
     <!--<bean id="studentDaoImpl"-->
-          <!--class="com.bpzj.dao.Impl.StudentDaoImpl"-->
+          <!--class="StudentDaoImpl"-->
           <!--p:jdbcTemplate-ref="jdbcTemplate"-->
     <!--/>-->
 </beans>
