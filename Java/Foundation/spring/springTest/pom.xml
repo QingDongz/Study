@@ -10,6 +10,10 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>helloworld</module>
+        <module>JDBCTemplateDemo</module>
+        <module>annotationbean</module>
+        <module>mybatisOld</module>
+        <module>mybatisNew</module>
     </modules>
 
     <properties>
