@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public class Student implements Serializable {
     private long id;
-    private long creatAt;
+    private long createAt;
     private long updateAt;
     private String name;
     private String qq;
@@ -25,12 +25,12 @@ public class Student implements Serializable {
         this.id = id;
     }
 
-    public long getCreatAt() {
-        return creatAt;
+    public long getCreateAt() {
+        return createAt;
     }
 
-    public void setCreatAt(long creatAt) {
-        this.creatAt = creatAt;
+    public void setCreateAt(long createAt) {
+        this.createAt = createAt;
     }
 
     public long getUpdateAt() {
@@ -125,7 +125,7 @@ public class Student implements Serializable {
     public String toString() {
         return "Student [" +
                 "id=" + id +
-                ", creatAt=" + creatAt +
+                ", createAt=" + createAt +
                 ", updateAt=" + updateAt +
                 ", name='" + name + '\'' +
                 ", qq='" + qq + '\'' +

@@ -23,7 +23,7 @@ public class StudentDaoImplTwo extends JdbcDaoSupport implements StudentDao {
     public void add(Student student) {
         String sql = "INSERT INTO sign values(null,?,?,?,?,?,?,?,?,?,?,?,?)";
         Object[] params = new Object[]{
-                student.getCreatAt(), student.getUpdateAt(), student.getName(),
+                student.getCreateAt(), student.getUpdateAt(), student.getName(),
                 student.getQq(), student.getType(),student.getEntryTime(),
                 student.getSchool(),student.getStudentId(),student.getLink(),
                 student.getOath(),student.getBrother(),student.getKnowFrom(),

@@ -15,7 +15,7 @@ public class StudentRow2 implements RowCallbackHandler {
     public void processRow(ResultSet resultSet) throws SQLException {
         Student student = new Student();
         student.setId(resultSet.getLong(1));
-        student.setCreatAt(resultSet.getLong(2));
+        student.setCreateAt(resultSet.getLong(2));
         student.setUpdateAt(resultSet.getLong(3));
         student.setName(resultSet.getString(4));
         student.setQq(resultSet.getString(5));
