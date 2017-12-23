@@ -2,7 +2,6 @@ package com.bpzj.SMUseXML;
 
 import java.util.List;
 
-//@Component
 public interface StudentDao {
 
     void add(Student student);

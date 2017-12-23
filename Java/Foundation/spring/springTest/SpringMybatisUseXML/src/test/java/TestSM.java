@@ -15,7 +15,10 @@ public class TestSM {
         ApplicationContext ctx = new ClassPathXmlApplicationContext("applicationContext.xml");
 
         StudentDao studentDao = (StudentDao) ctx.getBean("studentDao");
-        List<Student> student =studentDao.findAll();
-        System.out.println(student);
+        List<Student> students =studentDao.findAll();
+        for (Student student : students) {
+            System.out.println(student);
+        }
+        studentDao.deleteById(1);
     }
 }
