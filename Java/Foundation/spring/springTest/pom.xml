@@ -14,6 +14,8 @@
         <module>annotationbean</module>
         <module>mybatisOld</module>
         <module>mybatisNew</module>
+        <module>SpringMybatisUseXML</module>
+        <module>SMUseAnnotation</module>
     </modules>
 
     <properties>

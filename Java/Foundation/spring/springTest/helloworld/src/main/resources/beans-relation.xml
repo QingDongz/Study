@@ -7,9 +7,9 @@
 
     <!--这里写一个父家配置，abstract="true"，IOC容器启动时，不实例化，
     是一个抽象 配置，用来被继承-->
-    <bean id="person" class="com.bpzj.task1.Person" p:name="wy"
+    <bean id="person" class="com.bpzj.jdbcTemplate.task1.Person" p:name="wy"
           p:age="27" abstract="true"/>
 
-    <bean id="person2" class="com.bpzj.task1.Person"
+    <bean id="person2" class="com.bpzj.jdbcTemplate.task1.Person"
           parent="person" p:age="26"/>
 </beans>

@@ -1,5 +1,4 @@
-import com.bpzj.task1.Car;
-import org.springframework.context.ApplicationContext;
+import com.bpzj.jdbcTemplate.task1.Car;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class TestCycle {

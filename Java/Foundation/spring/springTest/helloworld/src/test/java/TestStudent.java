@@ -1,6 +1,8 @@
 //package com.bpzj.task1;
 
-import com.bpzj.task1.*;
+import com.bpzj.jdbcTemplate.task1.Car;
+import com.bpzj.jdbcTemplate.task1.Person;
+import com.bpzj.jdbcTemplate.task1.Student;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 

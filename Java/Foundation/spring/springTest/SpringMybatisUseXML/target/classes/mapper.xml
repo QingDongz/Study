@@ -2,14 +2,14 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.bpzj.StudentDao">
-    <select id="findAll" resultType="Student">
+<mapper namespace="com.bpzj.SMUseXML.StudentDao">
+    <select id="findAll" resultType="com.bpzj.SMUseXML.Student">
 --         SELECT id,create_at createAt,update_at updateAt,name,qq,type,entry_time entryTime,
 --         school,student_id studentId, link, oath,brother,knowfrom FROM sign
         SELECT * FROM sign
     </select>
 
-    <insert id="add" parameterType="com.bpzj.Student"
+    <insert id="add" parameterType="com.bpzj.SMUseXML.Student"
     useGeneratedKeys="true" keyProperty="id">
         INSERT INTO sign VALUES(#{id},NOW(),NOW(),#{name},#{qq},#{type},#{entryTime}," +
             "#{school},#{studentId},#{link},#{oath},#{brother},#{knowFrom})
