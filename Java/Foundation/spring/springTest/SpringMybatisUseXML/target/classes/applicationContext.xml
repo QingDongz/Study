@@ -14,10 +14,10 @@
     <!-- 开启注解方式 -->
     <context:annotation-config/>
 
-    <!-- 导入数据库配置文件 -->
+    <!-- 第1步，导入数据库配置文件 -->
     <context:property-placeholder location="classpath:db.properties"/>
 
-    <!-- 配置jdbc数据源 -->
+    <!-- 第1步，配置jdbc数据源 -->
     <bean id="dataSource"
           class="org.springframework.jdbc.datasource.DriverManagerDataSource"
           p:driverClassName="${jdbc.driverClassName}"
@@ -38,6 +38,7 @@
         <!--<property name="typeAliasesPackage" value="com.bpzj.SMUseXML"/>-->
     </bean>
 
+    <!--配置mapper bean-->
     <bean id="studentDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
         <property name="mapperInterface" value="com.bpzj.SMUseXML.StudentDao"/>
         <property name="sqlSessionFactory" ref="sqlSessionFactory"/>
