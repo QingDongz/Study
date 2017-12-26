@@ -43,4 +43,5 @@
         <property name="mapperInterface" value="com.bpzj.SMUseXML.StudentDao"/>
         <property name="sqlSessionFactory" ref="sqlSessionFactory"/>
     </bean>
+
 </beans>

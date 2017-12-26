@@ -11,9 +11,8 @@
 
     <artifactId>SMUseAnnotation</artifactId>
 
-
     <properties>
-        <spring.version>4.3.13.RELEASE</spring.version>
+        <log4j2.version>2.10.0</log4j2.version>
     </properties>
 
     <dependencies>
@@ -30,14 +29,26 @@
             <artifactId>mybatis</artifactId>
             <version>3.4.4</version>
         </dependency>
-        <!--添加spring框架-->
-        <!-- https://mvnrepository.com/artifact/org.springframework/spring-test -->
+
+        <!--log4j2-->
         <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-test</artifactId>
-            <version>${spring.version}</version>
-            <scope>test</scope>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>${log4j2.version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-api</artifactId>
+            <version>${log4j2.version}</version>
+        </dependency>
+        <dependency>
+            <!-- Spring的框架日志信息都是使用JCL标准接口来进行输出的，如果想将Spring的
+            日志按照log4j的配置输出，我们要完成JCL-log4j之间的映射,log4j提供了依赖jar包-->
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-jcl</artifactId>
+            <version>${log4j2.version}</version>
+        </dependency>
+
     </dependencies>
 
 </project>

@@ -5,10 +5,10 @@
 <mapper namespace="com.bpzj.mybaits">
     <select id="findAll" resultType="Student">
         SELECT id,create_at createAt,update_at updateAt,name,qq,type,entry_time entryTime,
-        school,student_id studentId, link, oath,brother,knowfrom FROM sign
+        school,student_id studentId, link, oath,brother,knowfrom FROM student
     </select>
 
     <select id="findAll2" resultType="Student">
-        SELECT * FROM sign
+        SELECT * FROM student
     </select>
 </mapper>

@@ -10,23 +10,23 @@ import java.util.List;
 
 public interface StudentDaoUseAnnotation {
 
-    @Insert("INSERT INTO sign VALUES(NULL,NOW(),NOW(),#{name},#{qq},#{type},#{entryTime}," +
+    @Insert("INSERT INTO student VALUES(NULL,NOW(),NOW(),#{name},#{qq},#{type},#{entryTime}," +
             "#{school},#{studentId},#{link},#{oath},#{brother},#{knowFrom})")
     void add(Student student);
 
     //删除
-    @Delete("DELETE FROM sign WHERE id=#{id}")
+    @Delete("DELETE FROM student WHERE id=#{id}")
     void deleteById(int id);
 
     //修改
-    @Update("UPDATE sign SET update_at=NOW(), name=#{name}, type=#{type}, oath=#{oath} WHERE id=#{id}")
+    @Update("UPDATE student SET update_at=NOW(), name=#{name}, type=#{type}, oath=#{oath} WHERE id=#{id}")
     void updateById(Student student);
 
     //获取
     Student getById(int id);
 
     //查询
-    @Select("SELECT * FROM sign")
+    @Select("SELECT * FROM student")
     List<Student> findAll();
 
     //分页查询

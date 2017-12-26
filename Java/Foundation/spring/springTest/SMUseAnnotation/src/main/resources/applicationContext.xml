@@ -40,8 +40,9 @@
     </bean>
 
     <!-- 让spring自动扫描，不用再单独为每一个mapper创建bean，
-    只要在 interface(mapper)注解即-->
+    只要在 interface(mapper)注解为spring component即可-->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <property name="basePackage" value="com.bpzj.SMUseAnnotation"/>
     </bean>
+
 </beans>

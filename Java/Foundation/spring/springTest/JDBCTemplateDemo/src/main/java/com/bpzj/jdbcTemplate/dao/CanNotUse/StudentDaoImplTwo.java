@@ -21,7 +21,7 @@ public class StudentDaoImplTwo extends JdbcDaoSupport implements StudentDao {
 
     @Override
     public void add(Student student) {
-        String sql = "INSERT INTO sign values(null,?,?,?,?,?,?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO student values(null,?,?,?,?,?,?,?,?,?,?,?,?)";
         Object[] params = new Object[]{
                 student.getCreateAt(), student.getUpdateAt(), student.getName(),
                 student.getQq(), student.getType(),student.getEntryTime(),
@@ -34,7 +34,7 @@ public class StudentDaoImplTwo extends JdbcDaoSupport implements StudentDao {
 
     @Override
     public void deleteById(int id) {
-        String sql = "DELETE FROM sign WHERE id=?";
+        String sql = "DELETE FROM student WHERE id=?";
         this.getJdbcTemplate().update(sql, id);
     }
 

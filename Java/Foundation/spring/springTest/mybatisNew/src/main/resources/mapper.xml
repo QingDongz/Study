@@ -5,22 +5,22 @@
 <mapper namespace="com.bpzj.mybatisNew.dao.StudentDao">
     <select id="findAll" resultType="Student">
 --         SELECT id,create_at createAt,update_at updateAt,name,qq,type,entry_time entryTime,
---         school,student_id studentId, link, oath,brother,knowfrom FROM sign
-        SELECT * FROM sign
+--         school,student_id studentId, link, oath,brother,knowfrom FROM student
+        SELECT * FROM student
     </select>
 
     <insert id="add" parameterType="com.bpzj.Student"
     useGeneratedKeys="true" keyProperty="id">
-        INSERT INTO sign VALUES(#{id},NOW(),NOW(),#{name},#{qq},#{type},#{entryTime}," +
+        INSERT INTO student VALUES(#{id},NOW(),NOW(),#{name},#{qq},#{type},#{entryTime}," +
             "#{school},#{studentId},#{link},#{oath},#{brother},#{knowFrom})
     </insert>
 
     <update id="updateById">
-        UPDATE sign SET update_at=NOW(), name=#{name}, oath=#{oath} WHERE id=#{id}
+        UPDATE student SET update_at=NOW(), name=#{name}, oath=#{oath} WHERE id=#{id}
     </update>
 
     <delete id="deleteById">
-        DELETE FROM sign WHERE id=#{id}
+        DELETE FROM student WHERE id=#{id}
     </delete>
 
 </mapper>
