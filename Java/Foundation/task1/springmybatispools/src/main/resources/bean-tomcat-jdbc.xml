@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!-- 自动扫描注解，管理bean ，mybatis的 mapper bean下面还要添加-->
+    <context:component-scan base-package="com.bpzj.pool"/>
+
+    <!-- 开启注解方式 -->
+    <context:annotation-config/>
+
+    <!-- 第1步，导入数据库配置文件 -->
+    <context:property-placeholder location="classpath:db.properties"/>
+
+    <!--tomcat jdbc pool数据源配置-->
+    <bean id="dataSource" class="org.apache.tomcat.jdbc.pool.DataSource" destroy-method="close">
+        <property name="poolProperties">
+            <bean class="org.apache.tomcat.jdbc.pool.PoolProperties">
+                <property name="driverClassName" value="${jdbc.driverClassName}"/>
+                <property name="url" value="${jdbc.url}"/>
+                <property name="username" value="${jdbc.username}"/>
+                <property name="password" value="${jdbc.password}"/>
+                <property name="jmxEnabled" value="true"/>
+                <property name="testWhileIdle" value="true"/>
+                <property name="testOnBorrow" value="true"/>
+                <property name="testOnReturn" value="false"/>
+                <property name="validationInterval" value="30000"/>
+                <property name="validationQuery" value="SELECT 1"/>
+                <property name="timeBetweenEvictionRunsMillis" value="30000"/>
+                <property name="maxActive" value="100"/>
+                <property name="initialSize" value="5"/>
+                <property name="maxWait" value="10000"/>
+                <property name="minEvictableIdleTimeMillis" value="30000"/>
+                <property name="minIdle" value="10"/>
+                <property name="logAbandoned" value="false"/>
+                <property name="removeAbandoned" value="true"/>
+                <property name="removeAbandonedTimeout" value="60"/>
+                <property name="jdbcInterceptors" value="org.apache.tomcat.jdbc.pool.interceptor.ConnectionState;org.apache.tomcat.jdbc.pool.interceptor.StatementFinalizer"/>
+            </bean>
+        </property>
+    </bean>
+
+    <!-- Spring和MyBatis整合，配置sqlSessionFactory -->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <!-- 数据库连接池 -->
+        <property name="dataSource" ref="dataSource"/>
+        <!-- 配置 Mybatis 全局配置文件 -->
+        <property name="configLocation" value="classpath:mybatis-config.xml"/>
+        <!-- 自动扫描mapping.xml文件 (也可以在Mybatis 全局配置文件配置) -->
+        <!-- 如果sql语句完全使用注解，可以不用配置mapper文件-->
+        <property name="mapperLocations" value="classpath:mapper/mapper.xml"/>
+
+        <!--<property name="typeAliasesPackage" value="com.bpzj.SMUseXML"/>-->
+    </bean>
+
+    <!-- 让spring自动扫描，不用再单独为每一个mapper创建bean，
+    只要在 interface(mapper)注解为spring component即可-->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.bpzj.pool"/>
+    </bean>
+
+</beans>
