@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/annotationbean/annotationbean.iml" filepath="$PROJECT_DIR$/annotationbean/annotationbean.iml" />
+      <module fileurl="file://$PROJECT_DIR$/helloworld/helloworld.iml" filepath="$PROJECT_DIR$/helloworld/helloworld.iml" />
+      <module fileurl="file://$PROJECT_DIR$/jdbctemplatedemo/jdbctemplatedemo.iml" filepath="$PROJECT_DIR$/jdbctemplatedemo/jdbctemplatedemo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mybatisNew/mybatisNew.iml" filepath="$PROJECT_DIR$/mybatisNew/mybatisNew.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mybatisOld/mybatisOld.iml" filepath="$PROJECT_DIR$/mybatisOld/mybatisOld.iml" />
+      <module fileurl="file://$PROJECT_DIR$/smannotation/smannotation.iml" filepath="$PROJECT_DIR$/smannotation/smannotation.iml" />
+      <module fileurl="file://$PROJECT_DIR$/smxml/smxml.iml" filepath="$PROJECT_DIR$/smxml/smxml.iml" />
+      <module fileurl="file://$PROJECT_DIR$/springTest.iml" filepath="$PROJECT_DIR$/springTest.iml" />
+    </modules>
+  </component>
+</project>

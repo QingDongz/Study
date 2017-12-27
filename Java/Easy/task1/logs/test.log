@@ -1,0 +1,44 @@
+2017-12-28 06:19:07.379 [main-583] INFO  org.springframework.context.support.ClassPathXmlApplicationContext - Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@282003e1: startup date [Thu Dec 28 06:19:07 CST 2017]; root of context hierarchy
+2017-12-28 06:19:07.632 [main-317] INFO  org.springframework.beans.factory.xml.XmlBeanDefinitionReader - Loading XML bean definitions from class path resource [bean-druid.xml]
+2017-12-28 06:19:12.217 [main-106] INFO  com.alibaba.druid.pool.DruidDataSource - {dataSource-1} inited
+2017-12-28 06:19:12.440 [main-54] DEBUG org.apache.ibatis.logging.LogFactory - Logging initialized using 'class org.apache.ibatis.logging.commons.JakartaCommonsLoggingImpl' adapter.
+2017-12-28 06:19:12.802 [main-135] DEBUG org.apache.ibatis.logging.LogFactory - Logging initialized using 'class org.apache.ibatis.logging.log4j2.Log4j2Impl' adapter.
+2017-12-28 06:19:13.354 [main-159] DEBUG com.bpzj.task1.dao.StudentMapper.listAll - ==>  Preparing: -- SELECT id,create_at createAt,update_at updateAt,name,qq,type,entry_time entryTime, -- school,student_id studentId, link, oath,brother,knowfrom FROM student SELECT * FROM student 
+2017-12-28 06:19:13.450 [main-159] DEBUG com.bpzj.task1.dao.StudentMapper.listAll - ==> Parameters: 
+2017-12-28 06:19:13.568 [main-165] TRACE com.bpzj.task1.dao.StudentMapper.listAll - <==    Columns: id, create_at, update_at, name, qq, type, entry_time, school, student_id, link, oath, brother, knowfrom
+2017-12-28 06:19:13.569 [main-165] TRACE com.bpzj.task1.dao.StudentMapper.listAll - <==        Row: 1, 20171228055054, 20171228055054, 曲艳行, 3169119846, 1, 11月18日-22日, 燕山大学, 2641, http://www.jnshu.com/occupation/5/daily, 老大最帅, 郑州分院-王鹏举, 知乎
+2017-12-28 06:19:13.577 [main-165] TRACE com.bpzj.task1.dao.StudentMapper.listAll - <==        Row: 2, 20171228032835, 20171228055041, 曲艳行, 939804509, 2, 2017年12月7日, 天津大学, 4909, http://www.jnshu.com/daily/42239, 老大最帅, 北京分院-于靖华, null
+2017-12-28 06:19:13.584 [main-165] TRACE com.bpzj.task1.dao.StudentMapper.listAll - <==        Row: 3, 20171228032835, 20171228032835, 吴磊建, 1143010813, 1, 2017年12月27日~29日, 石家庄铁道大学, 2968, http://www.jnshu.com/daily/43557, 不经一番寒彻骨，怎得梅花扑鼻香, 上海分院-蒋新益, 知乎
+2017-12-28 06:19:13.587 [main-159] DEBUG com.bpzj.task1.dao.StudentMapper.listAll - <==      Total: 3
+2017-12-28 06:19:13.590 [main-63] DEBUG com.alibaba.druid.pool.PreparedStatementPool - {conn-10005, pstmt-20000} enter cache
+2017-12-28 06:19:13.601 [main-159] DEBUG com.bpzj.task1.dao.StudentMapper.deleteById - ==>  Preparing: DELETE FROM student WHERE id=? 
+2017-12-28 06:19:13.606 [main-159] DEBUG com.bpzj.task1.dao.StudentMapper.deleteById - ==> Parameters: 1(Integer)
+2017-12-28 06:19:13.613 [main-159] DEBUG com.bpzj.task1.dao.StudentMapper.deleteById - <==    Updates: 1
+2017-12-28 06:19:13.614 [main-63] DEBUG com.alibaba.druid.pool.PreparedStatementPool - {conn-10005, pstmt-20001} enter cache
+2017-12-28 06:19:13.621 [main-159] DEBUG com.bpzj.task1.dao.StudentMapper.listGroup - ==>  Preparing: SELECT * FROM student LIMIT ?,? 
+2017-12-28 06:19:13.623 [main-159] DEBUG com.bpzj.task1.dao.StudentMapper.listGroup - ==> Parameters: 0(Integer), 2(Integer)
+2017-12-28 06:19:13.625 [main-165] TRACE com.bpzj.task1.dao.StudentMapper.listGroup - <==    Columns: id, create_at, update_at, name, qq, type, entry_time, school, student_id, link, oath, brother, knowfrom
+2017-12-28 06:19:13.626 [main-165] TRACE com.bpzj.task1.dao.StudentMapper.listGroup - <==        Row: 2, 20171228032835, 20171228055041, 曲艳行, 939804509, 2, 2017年12月7日, 天津大学, 4909, http://www.jnshu.com/daily/42239, 老大最帅, 北京分院-于靖华, null
+2017-12-28 06:19:13.630 [main-165] TRACE com.bpzj.task1.dao.StudentMapper.listGroup - <==        Row: 3, 20171228032835, 20171228032835, 吴磊建, 1143010813, 1, 2017年12月27日~29日, 石家庄铁道大学, 2968, http://www.jnshu.com/daily/43557, 不经一番寒彻骨，怎得梅花扑鼻香, 上海分院-蒋新益, 知乎
+2017-12-28 06:19:13.632 [main-159] DEBUG com.bpzj.task1.dao.StudentMapper.listGroup - <==      Total: 2
+2017-12-28 06:19:13.634 [main-63] DEBUG com.alibaba.druid.pool.PreparedStatementPool - {conn-10005, pstmt-20002} enter cache
+2017-12-28 06:19:13.636 [main-159] DEBUG com.bpzj.task1.dao.StudentMapper.insert - ==>  Preparing: INSERT INTO student VALUES(?,NOW(),NOW(),?,?,?,?,?, ?,?,?,?,?) 
+2017-12-28 06:19:13.644 [main-159] DEBUG com.bpzj.task1.dao.StudentMapper.insert - ==> Parameters: 1(Long), 曲艳行(String), 3169119846(String), 1(Integer), 11月18日-22日(String), 燕山大学(String), 2641(String), http://www.jnshu.com/occupation/5/daily(String), 新年好(String), 郑州分院-王鹏举(String), 知乎(String)
+2017-12-28 06:19:13.653 [main-159] DEBUG com.bpzj.task1.dao.StudentMapper.insert - <==    Updates: 1
+2017-12-28 06:19:13.656 [main-63] DEBUG com.alibaba.druid.pool.PreparedStatementPool - {conn-10005, pstmt-20003} enter cache
+2017-12-28 06:19:13.658 [main-159] DEBUG com.bpzj.task1.dao.StudentMapper.listGroup - ==>  Preparing: SELECT * FROM student LIMIT ?,? 
+2017-12-28 06:19:13.659 [main-159] DEBUG com.bpzj.task1.dao.StudentMapper.listGroup - ==> Parameters: 0(Integer), 2(Integer)
+2017-12-28 06:19:13.666 [main-165] TRACE com.bpzj.task1.dao.StudentMapper.listGroup - <==    Columns: id, create_at, update_at, name, qq, type, entry_time, school, student_id, link, oath, brother, knowfrom
+2017-12-28 06:19:13.668 [main-165] TRACE com.bpzj.task1.dao.StudentMapper.listGroup - <==        Row: 1, 20171228061913, 20171228061913, 曲艳行, 3169119846, 1, 11月18日-22日, 燕山大学, 2641, http://www.jnshu.com/occupation/5/daily, 新年好, 郑州分院-王鹏举, 知乎
+2017-12-28 06:19:13.672 [main-165] TRACE com.bpzj.task1.dao.StudentMapper.listGroup - <==        Row: 2, 20171228032835, 20171228055041, 曲艳行, 939804509, 2, 2017年12月7日, 天津大学, 4909, http://www.jnshu.com/daily/42239, 老大最帅, 北京分院-于靖华, null
+2017-12-28 06:19:13.673 [main-159] DEBUG com.bpzj.task1.dao.StudentMapper.listGroup - <==      Total: 2
+2017-12-28 06:19:13.674 [main-159] DEBUG com.bpzj.task1.dao.StudentMapper.updateById - ==>  Preparing: UPDATE student SET update_at=NOW(), name=?, oath=? WHERE id=? 
+2017-12-28 06:19:13.679 [main-159] DEBUG com.bpzj.task1.dao.StudentMapper.updateById - ==> Parameters: 曲艳行(String), 老大最帅(String), 1(Long)
+2017-12-28 06:19:13.689 [main-159] DEBUG com.bpzj.task1.dao.StudentMapper.updateById - <==    Updates: 1
+2017-12-28 06:19:13.690 [main-63] DEBUG com.alibaba.druid.pool.PreparedStatementPool - {conn-10005, pstmt-20004} enter cache
+2017-12-28 06:19:13.692 [main-159] DEBUG com.bpzj.task1.dao.StudentMapper.getById - ==>  Preparing: SELECT * FROM student WHERE id=? 
+2017-12-28 06:19:13.694 [main-159] DEBUG com.bpzj.task1.dao.StudentMapper.getById - ==> Parameters: 1(Integer)
+2017-12-28 06:19:13.699 [main-165] TRACE com.bpzj.task1.dao.StudentMapper.getById - <==    Columns: id, create_at, update_at, name, qq, type, entry_time, school, student_id, link, oath, brother, knowfrom
+2017-12-28 06:19:13.700 [main-165] TRACE com.bpzj.task1.dao.StudentMapper.getById - <==        Row: 1, 20171228061913, 20171228061913, 曲艳行, 3169119846, 1, 11月18日-22日, 燕山大学, 2641, http://www.jnshu.com/occupation/5/daily, 老大最帅, 郑州分院-王鹏举, 知乎
+2017-12-28 06:19:13.703 [main-159] DEBUG com.bpzj.task1.dao.StudentMapper.getById - <==      Total: 1
+2017-12-28 06:19:13.705 [main-63] DEBUG com.alibaba.druid.pool.PreparedStatementPool - {conn-10005, pstmt-20005} enter cache
