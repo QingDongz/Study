@@ -14,9 +14,9 @@ for root, dirs, files in os.walk('./'):
 
 # 删除 符合规则的 文件，
 for root, dirs, files in os.walk('./'):
-    for dir_name in files:
-        if dir_name.endswith(".idea"):
-            os.remove(os.path.join(root, dir_name))
+    for file_name in files:
+        if file_name.endswith(".iml"):
+            os.remove(os.path.join(root, file_name))
 
 
 
