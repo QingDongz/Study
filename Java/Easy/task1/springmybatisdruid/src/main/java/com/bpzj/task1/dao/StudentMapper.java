@@ -26,7 +26,7 @@ public interface StudentMapper {
 //    @Select("SELECT * FROM student")
     List<Student> listAll();
 
-    //分页查询
+    //分组查询
 //    @Select("SELECT * FROM student LIMIT #{start},#{count}")
     List<Student> listGroup(@Param("start") int start,@Param("count") int count);
 

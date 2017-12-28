@@ -57,6 +57,12 @@
             <version>0.9.1.2</version>
         </dependency>
 
+        <!--BoneCP 连接池 -->
+        <dependency>
+            <groupId>com.jolbox</groupId>
+            <artifactId>bonecp-spring</artifactId>
+            <version>0.8.0.RELEASE</version>
+        </dependency>
     </dependencies>
 
 
@@ -76,7 +82,7 @@
                         <configuration>
                             <transformers>
                                 <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                                    <mainClass>com.bpzj.com.bpzj.task1.test.Task1Test</mainClass>
+                                    <mainClass>com.bpzj.com.bpzj.task1.test.MainTest</mainClass>
                                 </transformer>
                                 <transformer implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
                                     <resource>META-INF/spring.handlers</resource>

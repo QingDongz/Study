@@ -23,6 +23,8 @@ for root, dirs, files in os.walk('./'):
     for file_name in files:
         if file_name.endswith(".iml"):
             os.remove(os.path.join(root, file_name))
+        elif dir_name.endswith("fabfile.py"):
+            os.remove(os.path.join(root, file_name))
 
 
 

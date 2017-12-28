@@ -25,6 +25,12 @@
             <artifactId>druid</artifactId>
             <version>1.1.6</version>
         </dependency>
+        <!--C3p0 连接池 (2007年停止维护)-->
+        <dependency>
+            <groupId>c3p0</groupId>
+            <artifactId>c3p0</artifactId>
+            <version>0.9.1.2</version>
+        </dependency>
 
     </dependencies>
 
@@ -45,7 +51,7 @@
                         <configuration>
                             <transformers>
                                 <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                                    <mainClass>com.bpzj.task1.test.Task1Test</mainClass>
+                                    <mainClass>com.bpzj.task1.test.MainTest</mainClass>
                                 </transformer>
                                 <transformer implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
                                     <resource>META-INF/spring.handlers</resource>
