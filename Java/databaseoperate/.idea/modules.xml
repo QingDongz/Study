@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/databaseoperate.iml" filepath="$PROJECT_DIR$/databaseoperate.iml" />
+      <module fileurl="file://$PROJECT_DIR$/jdbc/jdbc.iml" filepath="$PROJECT_DIR$/jdbc/jdbc.iml" />
+      <module fileurl="file://$PROJECT_DIR$/jdbcadvanced/jdbcadvanced.iml" filepath="$PROJECT_DIR$/jdbcadvanced/jdbcadvanced.iml" />
+      <module fileurl="file://$PROJECT_DIR$/poolusec3p0/poolusec3p0.iml" filepath="$PROJECT_DIR$/poolusec3p0/poolusec3p0.iml" />
+    </modules>
+  </component>
+</project>

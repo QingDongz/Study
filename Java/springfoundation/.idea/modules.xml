@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/annotationbean/annotationbean.iml" filepath="$PROJECT_DIR$/annotationbean/annotationbean.iml" />
+      <module fileurl="file://$PROJECT_DIR$/jdbctemplatedemo/jdbctemplatedemo.iml" filepath="$PROJECT_DIR$/jdbctemplatedemo/jdbctemplatedemo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/springfoundation.iml" filepath="$PROJECT_DIR$/springfoundation.iml" />
+    </modules>
+  </component>
+</project>

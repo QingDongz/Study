@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="mybatisNew" />
+        <module name="mybatisOld" />
+        <module name="smannotation" />
+        <module name="smxml" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="mybatisNew" target="1.8" />
+      <module name="mybatisOld" target="1.8" />
+      <module name="smannotation" target="1.8" />
+      <module name="smxml" target="1.8" />
+      <module name="springmybatis" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>
