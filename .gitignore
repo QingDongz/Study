@@ -1,0 +1,19 @@
+
+# Compiled class file
+*.class
+
+# Log file
+*.log
+
+*.jar
+*.war
+*.ear
+*.zip
+*.iml
+
+# 目录下的所有 /.idea/ ，形如子目录 /lib/.idea/ ，也会被忽略
+# 而且包括所有 .idea/ 目录下的文件，也被忽略。
+.idea/
+
+# 同 .idea/
+target/
