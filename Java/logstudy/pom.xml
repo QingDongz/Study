@@ -11,6 +11,7 @@
     <modules>
         <module>log4jstudy</module>
         <module>log4j2study</module>
+        <module>log4jxml</module>
     </modules>
 
     <properties>
@@ -29,6 +30,12 @@
             <scope>test</scope>
         </dependency>
 
+            <!-- https://mvnrepository.com/artifact/log4j/log4j -->
+            <dependency>
+                <groupId>log4j</groupId>
+                <artifactId>log4j</artifactId>
+                <version>1.2.17</version>
+            </dependency>
     </dependencies>
 
 </project>

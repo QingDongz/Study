@@ -1,5 +1,7 @@
 package com.bpzj.log4jTest;
 
+import org.apache.log4j.BasicConfigurator;
+import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 
@@ -8,16 +10,16 @@ public class log4jTest2 {
 
     public static void main(String[] args) {
 
-        //指定配置文件
-        PropertyConfigurator.configure("E:\\OneDrive\\Code - java\\Task1\\log4jTest\\src\\main\\resources\\log4j.properties");
+        // 指定配置文件的写法
+        // PropertyConfigurator.configure("E:\\OneDrive\\Code - java\\Task1\\log4jTest\\src\\main\\resources\\log4j.properties");
+
+        // 2. 进行默认配置
+        BasicConfigurator.configure();
+        //3. 设置日志输出级别
+        logger.setLevel(Level.TRACE);
 
         for (int i=0;i<20; i++) {
-            logger.trace("跟踪信息");
-            logger.debug("调试信息");
-            logger.info("输出信息");
-            logger.warn("警告信息");
-            logger.error("错误信息");
-            logger.fatal("致命信息");
+            System.out.println(i);
         }
 
     }

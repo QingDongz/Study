@@ -5,13 +5,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.bpzj</groupId>
-    <artifactId>springfoundation</artifactId>
-    <packaging>pom</packaging>
-    <version>1.0</version>
-    <modules>
-        <module>annotationbean</module>
-        <module>jdbctemplatedemo</module>
-        <module>studyiocanddi</module>
-    </modules>
+    <artifactId>springmvc</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
 
 </project>
