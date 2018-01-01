@@ -12,7 +12,7 @@
     <title>学生列表</title>
 </head>
 <body>
-    <table border="1" cellpadding="10" cellspacing="0">
+    <table border="1" cellpadding="15" cellspacing="0">
         <tr>
             <td>id</td>
             <td>姓名</td>
