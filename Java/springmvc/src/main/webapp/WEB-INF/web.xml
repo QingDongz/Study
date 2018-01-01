@@ -34,6 +34,24 @@
         <url-pattern>/</url-pattern>
     </servlet-mapping>
 
+    <!-- 解决工程编码过滤器，客户端向服务器post数据时，强制使用utf-8 -->
+    <filter>
+        <filter-name>characterEncodingFilter</filter-name>
+        <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+        <init-param>
+            <param-name>encoding</param-name>
+            <param-value>UTF-8</param-value>
+        </init-param>
+        <init-param>
+            <param-name>forceEncoding</param-name>
+            <param-value>true</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>characterEncodingFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
     <!-- 配置filter 把POST请求转为DELETE、PUT请求, -->
     <filter>
         <filter-name>HiddenHttpMethodFilter</filter-name>
