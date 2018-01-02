@@ -28,8 +28,8 @@ public class StudentController {
         // 紧跟的这句就会分页查询，结果保存在pageInfo
         PageHelper.startPage(pn, 5);
         List<Student> list = studentService.getAll();
-        // pageInfo 封装了查询后的结果，注意后面的 navigatePages
-        PageInfo page = new PageInfo(list);
+        // pageInfo 封装了查询后的结果，注意后面的 navigatePages，默认为 8，这里指定为5
+        PageInfo page = new PageInfo(list,5);
         model.addAttribute("pageInfo", page);
         return "list";
     }

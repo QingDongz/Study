@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <html>
 <head>
     <title>学生列表</title>
@@ -39,7 +40,7 @@
 
         <%--按钮--%>
         <div class="row">
-            <div class="col-md-4 col-md-offset-8">
+            <div class="col-md-4 col-md-offset-9">
                 <button class="btn btn-primary">新增</button>
                 <button class="btn btn-danger">删除</button>
             </div>
@@ -47,7 +48,7 @@
         <%-- 表格数据 --%>
         <div class="row">
             <div class="col-md-12">
-                <table>
+                <table class="table table-hover" >
                     <tr>
                         <th>id</th>
                         <th>姓名</th>
@@ -58,49 +59,83 @@
                         <th>从何处了解</th>
                         <th>操作</th>
                     </tr>
+                    <c:forEach items="${requestScope.pageInfo.list}" var="std">
                     <tr>
-                        <th>1</th>
-                        <th>bpzj</th>
-                        <th>12345</th>
-                        <th>1.1-1.10</th>
-                        <th>一个学校</th>
-                        <th>学习使我快乐</th>
-                        <th>网络</th>
+                        <th>${std.id}</th>
+                        <th>${std.name}</th>
+                        <th>${std.qq}</th>
+                        <th>${std.entryTime}</th>
+                        <th>${std.school}</th>
+                        <th>${std.oath}</th>
+                        <th>${std.knowfrom}</th>
                         <th>
-                            <button class="btn btn-primary">
+                            <button class="btn btn-primary btn-sm">
                                 <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                                 编辑
                             </button>
-                            <button class="btn btn-danger">
+                            <button class="btn btn-danger btn-sm">
                                 <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
                                 删除
                             </button>
                         </th>
                     </tr>
+                    </c:forEach>
                 </table>
             </div>
         </div>
 
         <%-- 底部分页信息 --%>
-        <div class="row"></div>
+        <div class="row">
+            <div class="row-md-6">
+                <h4>当前为第${requestScope.pageInfo.pageNum}页，
+                    共${requestScope.pageInfo.total}条记录，
+                    共${requestScope.pageInfo.pages}页
+                </h4>
+            </div>
+            <div class="row-md-6 col-md-offset-4">
+                <nav aria-label="Page navigation">
+                    <ul class="pagination">
+
+                        <c:if test="${pageInfo.hasPreviousPage}">
+                            <li><a href="${APP_PATH}/students">首页</a></li>
+                            <li>
+                                <a href="${APP_PATH}/students?pn=${pageInfo.pageNum-1}" aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                </a>
+                            </li>
+                        </c:if>
+
+                        <c:forEach items="${requestScope.pageInfo.navigatepageNums}" var="page_Num">
+                            <c:if test="${page_Num == pageInfo.pageNum}">
+                                <li class="active"><a href="#">${page_Num}</a></li>
+                            </c:if>
+                            <c:if test="${page_Num != pageInfo.pageNum}">
+                                <li class=><a href="${APP_PATH}/students?pn=${page_Num}">${page_Num}</a></li>
+                            </c:if>
+                        </c:forEach>
+
+                        <c:if test="${pageInfo.hasNextPage}">
+                            <li>
+                                <a href="${APP_PATH}/students?pn=${pageInfo.pageNum+1}" aria-label="Next">
+                                    <span aria-hidden="true">&raquo;</span>
+                                </a>
+                            </li>
+                            <li><a href="${APP_PATH}/students?pn=${pageInfo.pages}">末页</a></li>
+                        </c:if>
+
+                    </ul>
+                </nav>
+            </div>
+
+        </div>
     </div>
     <table align="center" border="1" cellpadding="5" cellspacing="0">
-                <c:forEach items="${requestScope.allStudents}" var="student">
+                <c:forEach items="${requestScope.allstds}" var="std">
             <tr>
-                <td>${student.id}</td>
-                <td>${student.name}</td>
-                <td>${student.qq}</td>
-                <td>${student.entryTime}</td>
-                <td>${student.school}</td>
-                <td>${student.studentId}</td>
-                <td>${student.link}</td>
-                <td>${student.oath}</td>
-                <td>${student.brother}</td>
-                <td>${student.knowFrom}</td>
+                
             </tr>
         </c:forEach>
     </table>
-    <br/>
-<h3><a href="/student">添加学生</a> </h3>
+
 </body>
 </html>
