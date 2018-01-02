@@ -18,12 +18,6 @@
         <setting name="logImpl" value="LOG4J"/>
     </settings>
 
-    <plugins>
-        <plugin interceptor="com.github.pagehelper.PageInterceptor">
-            <!--分页参数合理化  -->
-            <property name="reasonable" value="true"/>
-        </plugin>
-    </plugins>
  <!--   <mappers>
         <mapper resource="mapper.xml"/>
     </mappers>-->

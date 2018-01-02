@@ -10,25 +10,8 @@
 <html>
 <head>
     <title>学生列表</title>
-
-    <%-- web路径：
-    不以 / 开始的相对路径，找资源，以当前资源的路径为基准，经常容易出问题。
-    以 / 开始的相对路径，找资源，以服务器的路径(http://localhost:3306)为标准
-    比如当前项目叫springmvc，那么项目路径就是：
-            http://localhost:3306/springmvc
-    这样写又太麻烦，所以，用java语句获取        --%>
-    <%
-        pageContext.setAttribute("APP_PATH", request.getContextPath());
-    %>
-    <%-- 引入jauery --%>
-    <script type="text/javascript" src="${APP_PATH}/WEB-INF/statics/js/jquery-2.1.4.min.js"></script>
-    <%-- 引入BootStrap --%>
-    <link href="${APP_PATH}/WEB-INF/statics/bootstrap-3.3.7-dist/css/bootstrap.min.css">
-    <script src="${APP_PATH}/WEB-INF/statics/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 </head>
 <body>
-
-    <%-- 搭建显示页面--%>
     <table align="center" border="1" cellpadding="5" cellspacing="0">
         <tr>
             <td>id</td>

@@ -1,32 +1,30 @@
 package com.bpzj.web.dao;
 
 import com.bpzj.web.domain.Student;
-import org.apache.ibatis.annotations.Param;
-import org.springframework.stereotype.Repository;
-
+import com.bpzj.web.domain.StudentExample;
 import java.util.List;
+import org.apache.ibatis.annotations.Param;
 
-@Repository()
 public interface StudentMapper {
+    long countByExample(StudentExample example);
 
-    boolean insert(Student student);
+    int deleteByExample(StudentExample example);
 
-    //删除
-    boolean deleteById(int id);
+    int deleteByPrimaryKey(Long id);
 
-    //修改
-    boolean updateById(Student student);
+    int insert(Student record);
 
-    //获取
-    Student getByName(String name);
-    Student getById(int id);
+    int insertSelective(Student record);
 
-    //查询
-//    @Select("SELECT * FROM student")
-    List<Student> listAll();
+    List<Student> selectByExample(StudentExample example);
 
-    //分组查询
-//    @Select("SELECT * FROM student LIMIT #{start},#{count}")
-    List<Student> listGroup(@Param("start") int start, @Param("count") int count);
+    Student selectByPrimaryKey(Long id);
 
+    int updateByExampleSelective(@Param("record") Student record, @Param("example") StudentExample example);
+
+    int updateByExample(@Param("record") Student record, @Param("example") StudentExample example);
+
+    int updateByPrimaryKeySelective(Student record);
+
+    int updateByPrimaryKey(Student record);
 }
