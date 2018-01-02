@@ -5,12 +5,11 @@
 	      http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
          version="3.0">
 
-    <!-- spring配置 -->
+    <!-- spring配置，web容器启动时，加载spring ioc容器 -->
     <context-param>
         <param-name>contextConfigLocation</param-name>
         <param-value>classpath:applicationContext.xml</param-value>
     </context-param>
-
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
@@ -28,13 +27,12 @@
         </init-param>
         <load-on-startup>1</load-on-startup>
     </servlet>
-
     <servlet-mapping>
         <servlet-name>mvc</servlet-name>
         <url-pattern>/</url-pattern>
     </servlet-mapping>
 
-    <!-- 解决工程编码过滤器，客户端向服务器post数据时，强制使用utf-8 -->
+    <!-- 3、springMVC字符编码过滤器，客户端和服务器传输数据时，强制使用utf-8 ，过滤器是有顺序的，字符编码应该放在最前面-->
     <filter>
         <filter-name>characterEncodingFilter</filter-name>
         <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
@@ -42,17 +40,20 @@
             <param-name>encoding</param-name>
             <param-value>UTF-8</param-value>
         </init-param>
+        <!-- 老版本 只有一个参数forceEncoding，新版本可以指定forceRequestEncoding 、forceResponseEncoding
+        也可以使用老参数 forceEncoding，CharacterEncodingFilter 会把两个参数都设置为 forceEncoding的值-->
         <init-param>
             <param-name>forceEncoding</param-name>
             <param-value>true</param-value>
         </init-param>
+
     </filter>
     <filter-mapping>
         <filter-name>characterEncodingFilter</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
 
-    <!-- 配置filter 把POST请求转为DELETE、PUT请求, -->
+    <!-- REST风格，配置filter 把POST请求转为DELETE、PUT请求, -->
     <filter>
         <filter-name>HiddenHttpMethodFilter</filter-name>
         <filter-class>org.springframework.web.filter.HiddenHttpMethodFilter</filter-class>
@@ -60,7 +61,7 @@
     <!-- 配置filter mapping 过滤所有请求 -->
     <filter-mapping>
         <filter-name>HiddenHttpMethodFilter</filter-name>
-        <url-pattern>/</url-pattern>
+        <url-pattern>/*</url-pattern>
     </filter-mapping>
 
     <context-param>

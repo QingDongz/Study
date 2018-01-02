@@ -33,7 +33,7 @@
         <!--连接池中保留的最大连接数。Default: 15 -->
         <property name="maxPoolSize" value="100" />
         <!--连接池中保留的最小连接数。-->
-        <property name="minPoolSize" value="5" />
+        <property name="minPoolSize" value="3" />
         <!--初始化时获取的连接数，取值应在minPoolSize与maxPoolSize之间。Default: 3 -->
         <property name="initialPoolSize" value="5" />
         <!--最大空闲时间,60秒内未使用则连接被丢弃。若为0则永不丢弃。Default: 0 -->
@@ -52,11 +52,11 @@
         <property name="testConnectionOnCheckout"  value="false" />
     </bean>
 
-    <!-- spring事务管理 -->
+    <!-- spring事务管理器 -->
     <bean id="dataSourceTransactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <!-- 控制数据源的开启、关闭、回滚 -->
         <property name="dataSource" ref="dataSource" />
     </bean>
-
     <!-- 开启基于注解的事务 -->
     <tx:annotation-driven transaction-manager="dataSourceTransactionManager"/>
 
@@ -73,7 +73,7 @@
         <!--<property name="typeAliasesPackage" value="com.bpzj.task1"></property>-->
     </bean>
 
-    <!-- 新的写法失败不知道为什么
+    <!-- 老的写法
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
         <property name="basePackage" value="com.bpzj.web"/>

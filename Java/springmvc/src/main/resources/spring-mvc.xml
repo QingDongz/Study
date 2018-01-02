@@ -8,7 +8,9 @@
        http://www.springframework.org/schema/context
        http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
-    <!-- 扫描以下包，只扫描 Controller -->
+    <!-- springMVC配置文件 -->
+
+    <!-- 扫描包，只扫描 Controller，需要禁用默认的扫描规则 use-default-filters="false" -->
     <context:component-scan
             base-package="com.bpzj.web.controller"
             use-default-filters="false">
@@ -17,14 +19,17 @@
                 expression="org.springframework.stereotype.Controller"/>
     </context:component-scan>
 
-    <mvc:annotation-driven/>
-    <mvc:default-servlet-handler/>
-
-    <!-- 视图解析器 -->
+    <!-- 配置视图解析器 -->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/views/"/>
         <property name="suffix" value=".jsp"/>
     </bean>
+
+    <!--映射动态请求，并支持springMVC一些高级功能：JSR303校验，便捷的ajax，-->
+    <mvc:annotation-driven/>
+    <!-- 下面这句：添加了web容器默认的servlet(配置文件在web荣容器的web.xml)，springMVC
+    不能处理的资源交给web 容器 -->
+    <mvc:default-servlet-handler/>
 
     <!-- 文件上传配置 -->
     <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
