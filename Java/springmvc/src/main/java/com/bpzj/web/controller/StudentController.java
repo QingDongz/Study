@@ -8,10 +8,7 @@ import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -47,5 +44,16 @@ public class StudentController {
         PageInfo page = new PageInfo(list,5);
         model.addAttribute("pageInfo", page);
         return "list";
+    }
+
+    // 学生保存
+    // REST 风格，POST请求
+    //      /student    Post请求，新增
+
+    @RequestMapping(value = "/student", method = RequestMethod.POST)
+    @ResponseBody
+    public Msg saveStudent(Student student) {
+        studentService.saveStudent(student);
+        return Msg.success();
     }
 }

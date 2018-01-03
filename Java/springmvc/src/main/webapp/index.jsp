@@ -28,6 +28,56 @@
     <script src="${APP_PATH}/statics/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 </head>
 <body>
+<!-- 添加学生 模态框 -->
+<div class="modal fade" id="addStudentModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">添加学生</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" id="add_student_form">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">姓名</label>
+                        <div class="col-sm-10">
+                            <%-- input标签 name和domain bean 属性一致，方便对象转化 --%>
+                            <input type="text" name="name" class="form-control" id="stdName_add_input" placeholder="Name">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">QQ</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="qq" class="form-control" id="stdQQ_add_input" placeholder="QQ">
+                        </div>
+                    </div>
+                 <%--   <div class="form-group">
+                        <label class="col-sm-2 control-label">修真类型</label>
+                        <div class="col-sm-10">
+                            <input type="password" name="type" class="form-control" id="stdType_add_input" placeholder="Type">
+                        </div>
+                    </div>--%>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">修真类型</label>
+                        <div class="col-sm-10">
+                            <select class="form-control" name="type" id="type_add_select">
+                                <%-- value是提交的值，文本是下拉选择显示的内容--%>
+                                <option value="1">java</option>
+                                <option value="2">前端</option>
+                                <option value="3">pm</option>
+                                <option value="4">运营</option>
+                            </select>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary" id="student_add_save">保存</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 <%-- 搭建显示页面--%>
 <div class="container" >
@@ -41,7 +91,7 @@
     <%--按钮--%>
     <div class="row">
         <div class="col-md-4 col-md-offset-9">
-            <button class="btn btn-primary">新增</button>
+            <button class="btn btn-primary" id="add_student_btn">新增</button>
             <button class="btn btn-danger">删除</button>
         </div>
     </div>
@@ -81,6 +131,8 @@
 </div>
 
 <script type="text/javascript">
+    // 全局页码数
+    var totalPages;
     <%-- 页面完成后，发送ajax请求，要到分业数据--%>
     $(function () {
         //
@@ -137,6 +189,7 @@
                 .append("当前为第"+result.backValue.pageInfo.pageNum+"页," +
                     "共"+result.backValue.pageInfo.total+"条记录," +
                     "分为 "+result.backValue.pageInfo.pages+"页"));
+        totalPages = result.backValue.pageInfo.pages + 1;
     }
 
 
@@ -195,6 +248,7 @@
             url:"${APP_PATH}/students",
             data:"pn="+pn,
             type:"get",
+            // result 就是 controller 函数返回的对象，处理为json字符串返回
             success:function (result) {
                 // 显示到 控制台，就是F12，network栏显示
                 // console.log(result)
@@ -206,9 +260,38 @@
                 build_page_nav(result);
             }
         });
-
     }
 
+    $("#add_student_btn").click(function () {
+        $("#addStudentModal").modal({
+            backdrop:"static"
+        });
+    });
+
+    $("#student_add_save").click(function () {
+
+        // 模态框中的数据提交到服务器进行保存
+        // 序列化表格数据为字符串，先用alert测试下
+        // alert($("#add_student_form").serialize());
+
+        // 学习ajax 发送请求，success 对象
+        $.ajax({
+            url:"${APP_PATH}/student",
+            type:"POST",
+            data:$("#add_student_form").serialize(),
+            // result 是controller函数返回对象（序列化后的json字符）
+            success:function (result) {
+                // alert(result.msg);
+                // 添加成功后，关闭模态框
+                $("#addStudentModal").modal("hide");
+                // 跳转到最后一页
+                //
+                toPageNum(totalPages);
+            }
+        });
+    });
+
+    // 获取修真类型
 </script>
 
 </body>

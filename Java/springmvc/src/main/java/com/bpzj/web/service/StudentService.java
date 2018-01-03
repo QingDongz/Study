@@ -12,6 +12,10 @@ public class StudentService {
     @Autowired
     StudentMapper studentMapper;
 
+    public void saveStudent(Student student) {
+        studentMapper.insertSelective(student);
+    }
+
     public List<Student> getAll() {
         return studentMapper.selectByExample(null);
     }
