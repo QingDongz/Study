@@ -27,4 +27,8 @@ public class StudentService {
     public void updateStudent(Student student) {
         studentMapper.updateByPrimaryKeySelective(student);
     }
+
+    public void deleteById(Long id) {
+        studentMapper.deleteByPrimaryKey(id);
+    }
 }

@@ -75,4 +75,12 @@ public class StudentController {
         studentService.updateStudent(student);
         return Msg.success();
     }
+
+    // 删除
+    @RequestMapping(value = "/students/{id}", method = RequestMethod.DELETE)
+    @ResponseBody
+    public Msg deleteStudentById(@PathVariable("id") Long id) {
+        studentService.deleteById(id);
+        return Msg.success();
+    }
 }

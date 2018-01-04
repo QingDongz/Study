@@ -221,7 +221,7 @@
                 .addClass("btn btn-danger btn-sm delete_btn")
                 .append($("<span></span>").addClass("glyphicon glyphicon-trash"))
                 .append("删除");
-            // 为编辑按钮添加一个id属性，方便ajax 查询当前id的学生信息
+            // 为编辑按钮添加一个id属性，方便ajax 删除当前id的学生信息
             delBtn.attr("del-id",item.id);
             // 两个按钮放到表格的一个格子中，中间放一个空格
             var btnTn = $("<td></td>").append(editBtn).append(" ").append(delBtn);
@@ -338,7 +338,7 @@
 
     // 新增学生，保存按钮 事件，提交数据保存，先校验是否符合格式
     // 再判断数据库中的重复性，如果要保证某个字段唯一，就要检验
-    $("#student_add_save").click(function () {
+    $("#add_modal_save_btn").click(function () {
 
         // 提交数据先进行前端校验
         if(!form_validate_name("#stdName_add_input")) {
@@ -501,6 +501,24 @@
                 toPageNum(currentPage);
             }
         });
+    });
+
+    // 单个删除
+    $(document).on("click", ".delete_btn", function () {
+        // 弹出确认对话框
+        var stdName = $(this).parents("tr").find("td:eq(1)").text()
+        // alert($(this).parents("tr").find("td:eq(1)").text());
+
+        if(confirm("确认删除 "+stdName+"吗？")) {
+            $.ajax({
+                url:"${APP_PATH}/students/"+$(this).attr("del-id"),
+                type:"DELETE",
+                success:function (result) {
+                    console.log(result);
+                    toPageNum(currentPage);
+                }
+            })
+        }
     });
 
 </script>
