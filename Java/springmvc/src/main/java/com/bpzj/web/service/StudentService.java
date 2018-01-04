@@ -20,4 +20,11 @@ public class StudentService {
         return studentMapper.selectByExample(null);
     }
 
+    public Student getStudentById(Long id) {
+        return studentMapper.selectByPrimaryKey(id);
+    }
+
+    public void updateStudent(Student student) {
+        studentMapper.updateByPrimaryKeySelective(student);
+    }
 }
