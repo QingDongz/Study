@@ -5,16 +5,20 @@ import com.bpzj.web.domain.Msg;
 import com.bpzj.web.service.StudentService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
 @Controller
 public class StudentController {
+
+    private static final Logger logger = Logger.getLogger(StudentController.class);
 
     @Autowired
     StudentService studentService;
@@ -53,6 +57,7 @@ public class StudentController {
     @RequestMapping(value = "/student", method = RequestMethod.POST)
     @ResponseBody
     public Msg saveStudent(Student student) {
+        logger.info(student);
         studentService.saveStudent(student);
         return Msg.success();
     }
@@ -76,11 +81,27 @@ public class StudentController {
         return Msg.success();
     }
 
-    // 删除
-    @RequestMapping(value = "/students/{id}", method = RequestMethod.DELETE)
+    // 删除，单个删除、批量删除合一
+    // 单个删除：1
+    // 批量删除：1-2-3
+
+    @RequestMapping(value = "/students/{ids}", method = RequestMethod.DELETE)
     @ResponseBody
-    public Msg deleteStudentById(@PathVariable("id") Long id) {
-        studentService.deleteById(id);
+    public Msg deleteStudent(@PathVariable("ids") String ids) {
+        if (ids.contains("-")) {
+            String[] str_ids = ids.split("-");
+
+            // 把String 转换为Long类型的数组
+            List<Long> del_ids = new ArrayList<>();
+            for (String id : str_ids) {
+                del_ids.add(Long.parseLong(id));
+            }
+            // 使用批量删除方法
+            studentService.deleteBatch(del_ids);
+        } else {
+            Long id = Long.parseLong(ids);
+            studentService.deleteById(id);
+        }
         return Msg.success();
     }
 }

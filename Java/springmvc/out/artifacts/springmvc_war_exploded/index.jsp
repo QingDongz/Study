@@ -147,7 +147,7 @@
     <div class="row">
         <div class="col-md-4 col-md-offset-9">
             <button class="btn btn-primary" id="add_student_btn">新增</button>
-            <button class="btn btn-danger">删除</button>
+            <button class="btn btn-danger" id="delete_checked">删除选中</button>
         </div>
     </div>
     <%-- 表格数据 --%>
@@ -157,6 +157,9 @@
                 <%-- <thead> 标签 标识为 HTML 表格的表头 --%>
                 <thead>
                     <tr>
+                        <th>
+                            <input type="checkbox" id="check_all"/>
+                        </th>
                         <th>id</th>
                         <th>姓名</th>
                         <th>qq</th>
@@ -202,6 +205,7 @@
         // alert(item.name)
 
         $.each(students,function (index, item) {
+            var checkBocId = $("<td><input type='checkbox' class='check_item'/></td>")
             var stdID = $("<td></td>").append(item.id);
             var stdName = $("<td></td>").append(item.name);
             var stdQQ = $("<td></td>").append(item.qq);
@@ -226,7 +230,8 @@
             // 两个按钮放到表格的一个格子中，中间放一个空格
             var btnTn = $("<td></td>").append(editBtn).append(" ").append(delBtn);
             // 连续append，因为append执行完还是 <tr>
-            $("<tr></tr>").append(stdID)
+            $("<tr></tr>").append(checkBocId)
+                .append(stdID)
                 .append(stdName)
                 .append(stdQQ)
                 .append(stdEntryTime)
@@ -318,6 +323,8 @@
                 bulid_page_info(result);
                 // 3、解析显示分页页码数据，也就是导航条
                 build_page_nav(result);
+                // check_all 的属性设为false
+                $("#check_all").prop("checked",false);
             }
         });
     }
@@ -506,7 +513,7 @@
     // 单个删除
     $(document).on("click", ".delete_btn", function () {
         // 弹出确认对话框
-        var stdName = $(this).parents("tr").find("td:eq(1)").text()
+        var stdName = $(this).parents("tr").find("td:eq(2)").text()
         // alert($(this).parents("tr").find("td:eq(1)").text());
 
         if(confirm("确认删除 "+stdName+"吗？")) {
@@ -514,7 +521,51 @@
                 url:"${APP_PATH}/students/"+$(this).attr("del-id"),
                 type:"DELETE",
                 success:function (result) {
-                    console.log(result);
+                    // console.log(result);
+                    alert(result.msg);
+                    toPageNum(currentPage);
+                }
+            })
+        }
+    });
+
+    // 全选
+    $("#check_all").click(function () {
+        // 原生的 checkbox dom属性用 prop获取
+        // attr 用来绑定、读取 自定义的值
+        // $(".check_item")  表示所有的 check_item 元素
+        // 把当前选择框的 checked 属性 赋值给 所有的 check_item，它们也就都选中
+        $(".check_item").prop("checked", $(this).prop("checked"));
+    });
+
+    // 单个选择按钮的单击事件
+    $(document).on("click", ".check_item", function () {
+        // 首先改变上面全选按钮的状态，用一个flag判断下面的框是否全部选中
+        // .check_item:checked 用了jquery 的checked 函数，表示选中的个数
+        // 全选中，flag = true
+        var flag = $(".check_item:checked").length == $(".check_item").length;
+        $("#check_all").prop("checked",flag);
+    });
+
+    $("#delete_checked").click(function () {
+        // $(".check_item:checked") 表示被选中的
+        // 注意 是 parents 不是 parten
+        var stdNames = "";
+        var del_ids_str = "";
+
+        $.each($(".check_item:checked"),function () {
+            stdNames += $(this).parents("tr").find("td:eq(2)").text()+",";
+            del_ids_str += $(this).parents("tr").find("td:eq(1)").text()+"-";
+        });
+        // jquery 的substring 截取字符串，去除多余的 ,
+        stdNames = stdNames.substring(0,stdNames.length-1);
+        del_ids_str = del_ids_str.substring(0,del_ids_str.length-1);
+        if(confirm("确认删除 "+stdNames+" 吗？")){
+            $.ajax({
+                url:"${APP_PATH}/students/"+ del_ids_str,
+                type:"DELETE",
+                success:function (result) {
+                    alert(result.msg);
                     toPageNum(currentPage);
                 }
             })
