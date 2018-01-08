@@ -11,7 +11,7 @@ public class MybatisGenerator {
     public static void main(String[] args) throws Exception{
         List<String> warnings = new ArrayList<String>();
         boolean overwrite = true;
-        File configFile = new File("E:\\OneDrive\\GitHubCode\\Study\\Java\\springmvc\\src\\main\\resources\\MBG.xml");
+        File configFile = new File("E:\\OneDrive\\GitHubCode\\Study\\Java\\springmvc\\src\\test\\resources\\MBG.xml");
         ConfigurationParser cp = new ConfigurationParser(warnings);
         Configuration config = cp.parseConfiguration(configFile);
         DefaultShellCallback callback = new DefaultShellCallback(overwrite);
