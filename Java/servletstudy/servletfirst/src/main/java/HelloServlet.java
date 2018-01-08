@@ -1,5 +1,3 @@
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -11,16 +9,20 @@ import java.io.PrintWriter;
 public class HelloServlet extends HttpServlet{
     private String message;
 
+    @Override
     public void init()
     {
         // 执行必需的初始化
         message = "Hello World";
     }
 
+
+    @Override
     public void doGet(HttpServletRequest request,
                       HttpServletResponse response)
             throws  IOException
     {
+        // doGet 表示响应 Get 请求
         // 设置响应内容类型
         response.setContentType("text/html");
 
@@ -29,6 +31,7 @@ public class HelloServlet extends HttpServlet{
         out.println("<h1>" + message + "</h1>");
     }
 
+    @Override
     public void destroy()
     {
         // 什么也不做
