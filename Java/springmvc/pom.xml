@@ -6,7 +6,8 @@
   <packaging>pom</packaging>
   <version>1.0</version>
     <modules>
-        <module>springhello</module>
+        <module>springmvchello</module>
+        <module>springmvctwo</module>
     </modules>
     <name>springmvc Maven Webapp</name>
   <url>http://maven.apache.org</url>

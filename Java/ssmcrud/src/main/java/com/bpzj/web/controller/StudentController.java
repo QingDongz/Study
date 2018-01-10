@@ -36,7 +36,7 @@ public class StudentController {
         return Msg.success().add("pageInfo", page);
     }
 
-    //    @RequestMapping(value = "/students",method = RequestMethod.GET)
+    @RequestMapping(value = "/jsontaglib",method = RequestMethod.GET)
     public String getStudents(
             @RequestParam(value = "pn", defaultValue = "1") Integer pn,
             Model model) {
