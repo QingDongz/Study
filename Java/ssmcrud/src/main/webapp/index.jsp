@@ -21,11 +21,17 @@
     <%
         pageContext.setAttribute("APP_PATH", request.getContextPath());
     %>
-    <%-- 引入jauery --%>
+
+    <%--引入jauery、引入 BootStrap--%>
+    <%--
     <script type="text/javascript" src="${APP_PATH}/statics/js/jquery-2.1.4.min.js"></script>
-    <%-- 引入BootStrap --%>
     <link href="${APP_PATH }/statics/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="${APP_PATH}/statics/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    --%>
+    <%-- 使用cdn加速 --%>
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
 <!-- 添加学生 模态框 -->
