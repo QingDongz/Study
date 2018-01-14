@@ -18,8 +18,6 @@ import java.util.List;
 @Controller
 public class StudentController {
 
-    private static final Logger logger = Logger.getLogger(StudentController.class);
-
     @Autowired
     StudentService studentService;
 
@@ -57,7 +55,6 @@ public class StudentController {
     @RequestMapping(value = "/student", method = RequestMethod.POST)
     @ResponseBody
     public Msg saveStudent(Student student) {
-        logger.info(student);
         studentService.saveStudent(student);
         return Msg.success();
     }

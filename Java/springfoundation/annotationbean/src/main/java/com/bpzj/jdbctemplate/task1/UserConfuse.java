@@ -5,6 +5,10 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class UserConfuse implements User {
 
+    @Override
+    public void setHouse(House house) {
+
+    }
 
     @Override
     public void save() {

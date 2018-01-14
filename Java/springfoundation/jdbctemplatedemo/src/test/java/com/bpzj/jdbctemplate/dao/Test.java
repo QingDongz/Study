@@ -11,7 +11,7 @@ public class Test {
 
     public static void main(String[] args) {
 
-        ApplicationContext ctx = new ClassPathXmlApplicationContext("datasource.xml");
+        ApplicationContext ctx = new ClassPathXmlApplicationContext("applicationContext.xml");
 
         //从spring IOC容器获取 studentDao 实例
         StudentDao studentDao = (StudentDao) ctx.getBean("studentDaoImpl");

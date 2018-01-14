@@ -4,6 +4,7 @@
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:tx="http://www.springframework.org/schema/tx"
        xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
+       xmlns:aop="http://www.springframework.org/schema/aop"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
        http://www.springframework.org/schema/beans/spring-beans.xsd
        http://www.springframework.org/schema/context
@@ -11,7 +12,7 @@
        http://www.springframework.org/schema/tx
        http://www.springframework.org/schema/tx/spring-tx.xsd
        http://mybatis.org/schema/mybatis-spring
-       http://mybatis.org/schema/mybatis-spring.xsd">
+       http://mybatis.org/schema/mybatis-spring.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
 
     <!-- 扫描以下包，不包括 Controller -->
     <context:component-scan base-package="com.bpzj.web">
@@ -47,13 +48,6 @@
         <property name="filters" value="stat" />
     </bean>
 
-    <!-- spring事务管理器 -->
-    <bean id="dataSourceTransactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-        <!-- 控制数据源的开启、关闭、回滚 -->
-        <property name="dataSource" ref="dataSource" />
-    </bean>
-    <!-- 开启基于注解的事务 -->
-    <tx:annotation-driven transaction-manager="dataSourceTransactionManager"/>
 
     <!-- Spring和MyBatis整合，配置sqlSessionFactory -->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
@@ -70,18 +64,60 @@
 
     <!-- 一个可以批量执行的sqlSession，单元测试用，生产环境不用
     <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
-        <constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"/>
-        <constructor-arg name="executorType" value="BATCH"/>
-    </bean>
+    <constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"/>
+    <constructor-arg name="executorType" value="BATCH"/>
+</bean>
     -->
 
     <!-- 老的写法
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
-        <property name="basePackage" value="com.bpzj.com.bpzj.web"/>
-    </bean>
+    <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
+    <property name="basePackage" value="com.bpzj.com.bpzj.web"/>
+</bean>
     -->
-
     <!-- 新的写法又好了  -->
     <mybatis-spring:scan base-package="com.bpzj.web"/>
+
+    <!-- ============== 事务管理的配置============= -->
+    <!-- 首先配置事务管理器，注意id。如果id="transactionManager"
+         也就是默认名称，后面的事务配置时可以省略 -->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <!-- 控制数据源的开启、关闭、回滚 -->
+        <property name="dataSource" ref="dataSource" />
+    </bean>
+
+    <!-- 开启基于注解的事务 -->
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+
+    <!-- 配置事务增强，比较重要的事务，推荐用xml文件配置 -->
+    <tx:advice id="txAdvice" transaction-manager="transactionManager">
+        <tx:attributes>
+            <!-- 所有方法都使用事务 -->
+            <tx:method name="*"/>
+            <!-- 以get开始的所有方法，配置read-only 调优 -->
+            <tx:method name="get*" read-only="true"/>
+        </tx:attributes>
+    </tx:advice>
+    <!-- AOP -->
+    <aop:config>
+        <!-- 切入点表达式 -->
+        <!-- service..*(..) 第一个双点表示包括service包下的子包，*表示所有方法，括号中的双点表示任意参数 -->
+        <aop:pointcut id="txPoint" expression="execution(* com.bpzj.web.service..*(..))"/>
+        <aop:advisor advice-ref="txAdvice" pointcut-ref="txPoint"/>
+    </aop:config>
+
+    <!-- 配置 AspectJ，因为springMVC的bean扫描早于spring的bean扫描
+    Controller层先创建完bean，这里的AOP后创建，所以在这里配置会出现
+    Controller层无法切入的问题，解决办法，springMVC配置里也添加-->
+    <!-- 同样这样的情况也存在于数据库事务中, 如果Service的Bean扫描配置在
+    spring-mvc.xml中, 而数据库事务管理器配置在application.xml中, 会导
+    致数据库事务失效, 原理一样 -->
+    <aop:aspectj-autoproxy/>
+    <aop:config>
+        <aop:pointcut id="servicePointCut" expression="execution(* com.bpzj.web.service..*(..))"/>
+        <aop:aspect id="serviceAspect" ref="logAdvice">
+            <aop:around method="aroundLog" pointcut-ref="servicePointCut"/>
+        </aop:aspect>
+    </aop:config>
+
 </beans>

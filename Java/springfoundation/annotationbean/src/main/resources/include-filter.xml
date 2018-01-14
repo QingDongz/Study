@@ -9,7 +9,7 @@
 
     <!--include-filter 需要和 use-default-filters="false" 配合使用-->
     <context:component-scan
-            base-package="com.bpzj.task1"
+            base-package="com.bpzj.jdbctemplate.task1"
             use-default-filters="false">
         <context:include-filter type="annotation" expression="org.springframework.stereotype.Service"/>
 

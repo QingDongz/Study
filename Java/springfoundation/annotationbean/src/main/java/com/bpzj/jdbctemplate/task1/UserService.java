@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserService {
 
+    // 装配了一个user，使用@Qualifier指定装配User的名称，要和UserImpl的名称一致
     @Autowired
     @Qualifier("userImpl")
     private User user;

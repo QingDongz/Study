@@ -21,7 +21,11 @@ public class TestAnnotation {
         UserService userService = (UserService) ctx.getBean("userService");
         System.out.println(userService);
 
-        User user = (User) ctx.getBean("user");
+        User user = (User) ctx.getBean("userImpl");
         System.out.println(user);
+
+        // 通过另外的方法getBean，因为有两个 类实现了接口：UserImpl和UserConfuse，下面这个会报错。
+        User user1 = ctx.getBean(User.class);
+        System.out.println(user1);
     }
 }

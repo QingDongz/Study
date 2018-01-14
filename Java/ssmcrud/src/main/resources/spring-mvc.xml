@@ -2,11 +2,11 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
-       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:aop="http://www.springframework.org/schema/aop"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
        http://www.springframework.org/schema/beans/spring-beans.xsd
        http://www.springframework.org/schema/context
-       http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+       http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
 
     <!-- springMVC配置文件 -->
 
@@ -43,5 +43,13 @@
         <property name="maxInMemorySize" value="4096"/>
     </bean>
 
+    <!-- 配置 AspectJ，要放到SpringMVC中，否则Controller层无法切入 -->
+    <aop:aspectj-autoproxy/>
 
+    <aop:config>
+        <aop:pointcut id="controllerPointCut" expression="execution(* com.bpzj.web.controller..*(..))"/>
+        <aop:aspect id="controllerAspect" ref="logAdvice">
+            <aop:around method="aroundLog" pointcut-ref="controllerPointCut"/>
+        </aop:aspect>
+    </aop:config>
 </beans>
