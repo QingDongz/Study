@@ -18,3 +18,4 @@
 # 同 .idea/
 target/
 out/
+*.pyc
