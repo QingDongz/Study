@@ -11,9 +11,13 @@ import org.springframework.stereotype.Component;
 public class LogAdvice {
     public static Logger loggerAdvice = Logger.getLogger(LogAdvice.class);
 
-    // 只切入Service层和Controller层，不切入DAO和Domain，所以改用xml配置
+    /**
+     * 只切入Service层和Controller层，不切入DAO和Domain，所以改用xml配置
+     * 体会注解的方便，和xml配置的灵活。
+     * @Around 的第一个参数必须是 org.aspectj.lang.ProceedingJoinPoint
+     * */
     // @Around("execution(* com.bpzj.web..*(..))")
-    public Object aroundLog(ProceedingJoinPoint pjp) {
+    public Object timeCountLog(ProceedingJoinPoint pjp) {
         Object result = null;
         // 获取 切入方法 的名称
         String methodName = pjp.getSignature().getName();

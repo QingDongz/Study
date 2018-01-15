@@ -22,9 +22,9 @@
     <!-- 开启注解方式 -->
     <context:annotation-config/>
 
+    <!-- ==============数据源配置=============== -->
     <!-- 第1步，导入数据库配置文件 -->
     <context:property-placeholder location="classpath:db.properties"/>
-
     <!-- Spring配置 druid 数据源 -->
     <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
         <!-- 基本属性 url、user、password -->
@@ -48,7 +48,7 @@
         <property name="filters" value="stat" />
     </bean>
 
-
+    <!--===================整合mybatis===================-->
     <!-- Spring和MyBatis整合，配置sqlSessionFactory -->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <!-- 数据库连接池 -->
@@ -69,14 +69,15 @@
 </bean>
     -->
 
-    <!-- 老的写法
+    <!-- 老的写法，dao层对应mapper，使用mybatis这个扫描，不直接注册到spring容器
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-    <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
-    <property name="basePackage" value="com.bpzj.com.bpzj.web"/>
-</bean>
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
+        <property name="basePackage" value="com.bpzj.com.bpzj.web"/>
+    </bean>
     -->
     <!-- 新的写法又好了  -->
     <mybatis-spring:scan base-package="com.bpzj.web"/>
+
 
     <!-- ============== 事务管理的配置============= -->
     <!-- 首先配置事务管理器，注意id。如果id="transactionManager"
@@ -116,7 +117,7 @@
     <aop:config>
         <aop:pointcut id="servicePointCut" expression="execution(* com.bpzj.web.service..*(..))"/>
         <aop:aspect id="serviceAspect" ref="logAdvice">
-            <aop:around method="aroundLog" pointcut-ref="servicePointCut"/>
+            <aop:around method="timeCountLog" pointcut-ref="servicePointCut"/>
         </aop:aspect>
     </aop:config>
 

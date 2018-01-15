@@ -3,16 +3,13 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:aop="http://www.springframework.org/schema/aop"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans
-       http://www.springframework.org/schema/beans/spring-beans.xsd
-       http://www.springframework.org/schema/context
-       http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
 
     <!-- springMVC配置文件 -->
 
     <!-- 扫描包，只扫描 Controller，需要禁用默认的扫描规则 use-default-filters="false" -->
     <context:component-scan
-            base-package="com.bpzj.web.controller"
+            base-package="com.bpzj.task4.controller"
             use-default-filters="false">
         <context:include-filter
                 type="annotation"
@@ -25,13 +22,11 @@
         <property name="suffix" value=".jsp"/>
     </bean>
 
-    <!-- 下面这句：添加了web容器默认的servlet(配置文件在web荣容器的web.xml)，springMVC
-    不能处理的资源交给web 容器 -->
-    <mvc:default-servlet-handler/>
-    <!--映射动态请求，并支持springMVC一些高级功能：JSR303校验，便捷的ajax，-->
-    <!-- 有了上面那句，必须有这句，否则用 @RequestMapping 注解无作用 -->
     <mvc:annotation-driven/>
+    <mvc:default-servlet-handler/>
 
+    <!-- 配置 AspectJ，要放到SpringMVC中，否则Controller层无法切入 -->
+    <aop:aspectj-autoproxy/>
 
     <!-- 文件上传配置 -->
     <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
@@ -43,13 +38,4 @@
         <property name="maxInMemorySize" value="4096"/>
     </bean>
 
-    <!-- 配置 AspectJ，要放到SpringMVC中，否则Controller层无法切入 -->
-    <aop:aspectj-autoproxy/>
-
-    <aop:config>
-        <aop:pointcut id="controllerPointCut" expression="execution(* com.bpzj.web.controller..*(..))"/>
-        <aop:aspect id="controllerAspect" ref="logAdvice">
-            <aop:around method="timeCountLog" pointcut-ref="controllerPointCut"/>
-        </aop:aspect>
-    </aop:config>
 </beans>
