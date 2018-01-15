@@ -47,6 +47,10 @@
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
         <property name="basePackage" value="com.bpzj.task4"/>
     </bean>
+    <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+        <constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"/>
+        <constructor-arg name="executorType" value="BATCH"/>
+    </bean>
     <mybatis-spring:scan base-package="com.bpzj.task4"/>
 
     <!--==========事务管理和增强==============-->
