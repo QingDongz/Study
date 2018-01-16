@@ -104,63 +104,63 @@ public class StudentExample {
             criteria.add(new Criterion(condition, value1, value2));
         }
 
-        public Criteria andUuidIsNull() {
-            addCriterion("uuid is null");
+        public Criteria andIdIsNull() {
+            addCriterion("id is null");
             return (Criteria) this;
         }
 
-        public Criteria andUuidIsNotNull() {
-            addCriterion("uuid is not null");
+        public Criteria andIdIsNotNull() {
+            addCriterion("id is not null");
             return (Criteria) this;
         }
 
-        public Criteria andUuidEqualTo(Integer value) {
-            addCriterion("uuid =", value, "uuid");
+        public Criteria andIdEqualTo(Integer value) {
+            addCriterion("id =", value, "id");
             return (Criteria) this;
         }
 
-        public Criteria andUuidNotEqualTo(Integer value) {
-            addCriterion("uuid <>", value, "uuid");
+        public Criteria andIdNotEqualTo(Integer value) {
+            addCriterion("id <>", value, "id");
             return (Criteria) this;
         }
 
-        public Criteria andUuidGreaterThan(Integer value) {
-            addCriterion("uuid >", value, "uuid");
+        public Criteria andIdGreaterThan(Integer value) {
+            addCriterion("id >", value, "id");
             return (Criteria) this;
         }
 
-        public Criteria andUuidGreaterThanOrEqualTo(Integer value) {
-            addCriterion("uuid >=", value, "uuid");
+        public Criteria andIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("id >=", value, "id");
             return (Criteria) this;
         }
 
-        public Criteria andUuidLessThan(Integer value) {
-            addCriterion("uuid <", value, "uuid");
+        public Criteria andIdLessThan(Integer value) {
+            addCriterion("id <", value, "id");
             return (Criteria) this;
         }
 
-        public Criteria andUuidLessThanOrEqualTo(Integer value) {
-            addCriterion("uuid <=", value, "uuid");
+        public Criteria andIdLessThanOrEqualTo(Integer value) {
+            addCriterion("id <=", value, "id");
             return (Criteria) this;
         }
 
-        public Criteria andUuidIn(List<Integer> values) {
-            addCriterion("uuid in", values, "uuid");
+        public Criteria andIdIn(List<Integer> values) {
+            addCriterion("id in", values, "id");
             return (Criteria) this;
         }
 
-        public Criteria andUuidNotIn(List<Integer> values) {
-            addCriterion("uuid not in", values, "uuid");
+        public Criteria andIdNotIn(List<Integer> values) {
+            addCriterion("id not in", values, "id");
             return (Criteria) this;
         }
 
-        public Criteria andUuidBetween(Integer value1, Integer value2) {
-            addCriterion("uuid between", value1, value2, "uuid");
+        public Criteria andIdBetween(Integer value1, Integer value2) {
+            addCriterion("id between", value1, value2, "id");
             return (Criteria) this;
         }
 
-        public Criteria andUuidNotBetween(Integer value1, Integer value2) {
-            addCriterion("uuid not between", value1, value2, "uuid");
+        public Criteria andIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("id not between", value1, value2, "id");
             return (Criteria) this;
         }
 
@@ -231,66 +231,6 @@ public class StudentExample {
 
         public Criteria andNameNotBetween(String value1, String value2) {
             addCriterion("name not between", value1, value2, "name");
-            return (Criteria) this;
-        }
-
-        public Criteria andStudyConditionIsNull() {
-            addCriterion("study_condition is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andStudyConditionIsNotNull() {
-            addCriterion("study_condition is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andStudyConditionEqualTo(Integer value) {
-            addCriterion("study_condition =", value, "studyCondition");
-            return (Criteria) this;
-        }
-
-        public Criteria andStudyConditionNotEqualTo(Integer value) {
-            addCriterion("study_condition <>", value, "studyCondition");
-            return (Criteria) this;
-        }
-
-        public Criteria andStudyConditionGreaterThan(Integer value) {
-            addCriterion("study_condition >", value, "studyCondition");
-            return (Criteria) this;
-        }
-
-        public Criteria andStudyConditionGreaterThanOrEqualTo(Integer value) {
-            addCriterion("study_condition >=", value, "studyCondition");
-            return (Criteria) this;
-        }
-
-        public Criteria andStudyConditionLessThan(Integer value) {
-            addCriterion("study_condition <", value, "studyCondition");
-            return (Criteria) this;
-        }
-
-        public Criteria andStudyConditionLessThanOrEqualTo(Integer value) {
-            addCriterion("study_condition <=", value, "studyCondition");
-            return (Criteria) this;
-        }
-
-        public Criteria andStudyConditionIn(List<Integer> values) {
-            addCriterion("study_condition in", values, "studyCondition");
-            return (Criteria) this;
-        }
-
-        public Criteria andStudyConditionNotIn(List<Integer> values) {
-            addCriterion("study_condition not in", values, "studyCondition");
-            return (Criteria) this;
-        }
-
-        public Criteria andStudyConditionBetween(Integer value1, Integer value2) {
-            addCriterion("study_condition between", value1, value2, "studyCondition");
-            return (Criteria) this;
-        }
-
-        public Criteria andStudyConditionNotBetween(Integer value1, Integer value2) {
-            addCriterion("study_condition not between", value1, value2, "studyCondition");
             return (Criteria) this;
         }
 
@@ -421,6 +361,66 @@ public class StudentExample {
 
         public Criteria andBriefIntroduceNotBetween(String value1, String value2) {
             addCriterion("brief_introduce not between", value1, value2, "briefIntroduce");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsStudyingIsNull() {
+            addCriterion("is_studying is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsStudyingIsNotNull() {
+            addCriterion("is_studying is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsStudyingEqualTo(Integer value) {
+            addCriterion("is_studying =", value, "isStudying");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsStudyingNotEqualTo(Integer value) {
+            addCriterion("is_studying <>", value, "isStudying");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsStudyingGreaterThan(Integer value) {
+            addCriterion("is_studying >", value, "isStudying");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsStudyingGreaterThanOrEqualTo(Integer value) {
+            addCriterion("is_studying >=", value, "isStudying");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsStudyingLessThan(Integer value) {
+            addCriterion("is_studying <", value, "isStudying");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsStudyingLessThanOrEqualTo(Integer value) {
+            addCriterion("is_studying <=", value, "isStudying");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsStudyingIn(List<Integer> values) {
+            addCriterion("is_studying in", values, "isStudying");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsStudyingNotIn(List<Integer> values) {
+            addCriterion("is_studying not in", values, "isStudying");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsStudyingBetween(Integer value1, Integer value2) {
+            addCriterion("is_studying between", value1, value2, "isStudying");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsStudyingNotBetween(Integer value1, Integer value2) {
+            addCriterion("is_studying not between", value1, value2, "isStudying");
             return (Criteria) this;
         }
 

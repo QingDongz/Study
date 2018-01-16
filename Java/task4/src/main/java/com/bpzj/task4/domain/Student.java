@@ -1,15 +1,15 @@
 package com.bpzj.task4.domain;
 
 public class Student {
-    private Integer uuid;
+    private Integer id;
 
     private String name;
-
-    private Integer studyCondition;
 
     private Integer jobId;
 
     private String briefIntroduce;
+
+    private Integer isStudying;
 
     private Integer isExcellent;
 
@@ -17,12 +17,12 @@ public class Student {
 
     private Long updateAt;
 
-    public Integer getUuid() {
-        return uuid;
+    public Integer getId() {
+        return id;
     }
 
-    public void setUuid(Integer uuid) {
-        this.uuid = uuid;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -31,14 +31,6 @@ public class Student {
 
     public void setName(String name) {
         this.name = name == null ? null : name.trim();
-    }
-
-    public Integer getStudyCondition() {
-        return studyCondition;
-    }
-
-    public void setStudyCondition(Integer studyCondition) {
-        this.studyCondition = studyCondition;
     }
 
     public Integer getJobId() {
@@ -55,6 +47,14 @@ public class Student {
 
     public void setBriefIntroduce(String briefIntroduce) {
         this.briefIntroduce = briefIntroduce == null ? null : briefIntroduce.trim();
+    }
+
+    public Integer getIsStudying() {
+        return isStudying;
+    }
+
+    public void setIsStudying(Integer isStudying) {
+        this.isStudying = isStudying;
     }
 
     public Integer getIsExcellent() {
@@ -79,5 +79,17 @@ public class Student {
 
     public void setUpdateAt(Long updateAt) {
         this.updateAt = updateAt;
+    }
+
+    public Student(Integer id, String name, Integer jobId, String briefIntroduce, Integer isStudying, Integer isExcellent) {
+        this.id = id;
+        this.name = name;
+        this.jobId = jobId;
+        this.briefIntroduce = briefIntroduce;
+        this.isStudying = isStudying;
+        this.isExcellent = isExcellent;
+    }
+
+    public Student() {
     }
 }

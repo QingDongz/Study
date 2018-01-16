@@ -16,6 +16,7 @@
 
     <link href="https://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" type="text/css">
     <link href="${APP_PATH}/statics/Untitled-3.css" rel="stylesheet" type="text/css">
+    <link href="../../statics/Untitled-3.css" rel="stylesheet" type="text/css">
     <link href="${APP_PATH}/statics/Untitled-1base.css" rel="stylesheet" type="text/css">
 </head>
 <body>
@@ -65,7 +66,6 @@
         </ol>
 		<div class="carousel-inner">
             <% List<String> imgs = Arrays.asList("547567.jpg","547567.jpg","547567.jpg","547567.jpg");%>
-            <c:forEach var="imgs"
             <div class="item active">
                         <img alt="First slide" src="${APP_PATH}/statics/t10images/547567.jpg">
                     </div>
@@ -129,11 +129,11 @@
 
                 <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3 text-center">
                     <p>
-                        <img src="${APP_PATH}/statics/t10images/453254312.png">12400<br>
+                        <img src="${APP_PATH}/statics/t10images/453254312.png">${totalNum}<br>
                         <span class="up-3">累计在线学习人数</span>
                     </p>
                     <p>
-                        <img src="${APP_PATH}/statics/t10images/453254312.png">12400<br>
+                        <img src="${APP_PATH}/statics/t10images/453254312.png">${workedNum}<br>
                         <span class="up-3">学员已经找到满意工作</span>
                     </p>
                 </div>
@@ -190,38 +190,15 @@
             <div class="main-c row">
                 <h3 class="text-center main-tab">优秀学员展示</h3>
                 <ul class="list-unstyled text-center">
-                    <li class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
-                        <div>
-                            <img src="${APP_PATH}/statics/t10images/242424.png">
-                            <span>技术顾问:罗大佑</span>
-                            <p class="text-left">百度技术总监：互联网基础服务领域，从事虚拟主机，云主机，域名。
-                                曾任新网高级技术经理，负责技术研发，团队管理与建设。</p>
-                        </div>
-                    </li>
-                    <li class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
-                        <div>
-                            <img src="${APP_PATH}/statics/t10images/242424.png">
-                            <span>技术顾问:罗大佑</span>
-                            <p class="text-left">百度技术总监：互联网基础服务领域，从事虚拟主机，云主机，域名。
-                                曾任新网高级技术经理，负责技术研发，团队管理与建设。</p>
-                        </div>
-                    </li>
-                    <li class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
-                        <div>
-                            <img src="${APP_PATH}/statics/t10images/242424.png">
-                            <span>技术顾问:罗大佑</span>
-                            <p class="text-left">百度技术总监：互联网基础服务领域，从事虚拟主机，云主机，域名。
-                                曾任新网高级技术经理，负责技术研发，团队管理与建设。</p>
-                        </div>
-                    </li>
-                    <li class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
-                        <div>
-                            <img src="${APP_PATH}/statics/t10images/242424.png">
-                            <span>技术顾问:罗大佑</span>
-                            <p class="text-left">百度技术总监：互联网基础服务领域，从事虚拟主机，云主机，域名。
-                                曾任新网高级技术经理，负责技术研发，团队管理与建设。</p>
-                        </div>
-                    </li>
+                    <c:forEach items="${requestScope.students}" var="students">
+                        <li class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+                            <div>
+                                <img src="${APP_PATH}/statics/t10images/242424.png">
+                                <span>技术顾问:${students.name}</span>
+                                <p class="text-left">${students.briefIntroduce}</p>
+                            </div>
+                        </li>
+                    </c:forEach>
                 </ul>
             </div>
 

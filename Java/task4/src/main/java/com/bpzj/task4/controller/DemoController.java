@@ -1,7 +1,7 @@
 package com.bpzj.task4.controller;
 
-//import com.bpzj.task4.dao.StudentMapper;
-//import com.bpzj.task4.domain.Student;
+import com.bpzj.task4.dao.StudentMapper;
+import com.bpzj.task4.domain.Student;
 import com.bpzj.task4.domain.Student;
 import com.bpzj.task4.service.StudentService;
 import org.apache.log4j.Logger;
@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
+
 
 @Controller
 public class DemoController {
@@ -35,6 +36,7 @@ public class DemoController {
         return "/t10index";
     }
 
+    // t11首页
     @RequestMapping(value = "/t11index")
     public String t11Controller() {
         logger.info("d");
@@ -42,7 +44,7 @@ public class DemoController {
     }
 
 
-
+    // 使用json传递数据
     @RequestMapping(value = "/t10usejson")
     @ResponseBody
     public String t10UseJson() {

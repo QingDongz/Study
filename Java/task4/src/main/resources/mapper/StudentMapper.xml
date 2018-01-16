@@ -2,11 +2,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.bpzj.task4.dao.StudentMapper">
   <resultMap id="BaseResultMap" type="com.bpzj.task4.domain.Student">
-    <id column="uuid" jdbcType="INTEGER" property="uuid" />
+    <id column="id" jdbcType="INTEGER" property="id" />
     <result column="name" jdbcType="VARCHAR" property="name" />
-    <result column="study_condition" jdbcType="INTEGER" property="studyCondition" />
     <result column="job_id" jdbcType="INTEGER" property="jobId" />
     <result column="brief_introduce" jdbcType="VARCHAR" property="briefIntroduce" />
+    <result column="is_studying" jdbcType="INTEGER" property="isStudying" />
     <result column="is_excellent" jdbcType="INTEGER" property="isExcellent" />
     <result column="create_at" jdbcType="BIGINT" property="createAt" />
     <result column="update_at" jdbcType="BIGINT" property="updateAt" />
@@ -70,7 +70,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    uuid, name, study_condition, job_id, brief_introduce, is_excellent, create_at, update_at
+    id, name, job_id, brief_introduce, is_studying, is_excellent, create_at, update_at
   </sql>
   <select id="selectByExample" parameterType="com.bpzj.task4.domain.StudentExample" resultMap="BaseResultMap">
     select
@@ -90,11 +90,11 @@
     select 
     <include refid="Base_Column_List" />
     from student
-    where uuid = #{uuid,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from student
-    where uuid = #{uuid,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
   </delete>
   <delete id="deleteByExample" parameterType="com.bpzj.task4.domain.StudentExample">
     delete from student
@@ -103,24 +103,21 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.bpzj.task4.domain.Student">
-    insert into student (uuid, name, study_condition, 
-      job_id, brief_introduce, is_excellent, 
+    insert into student (id, name, job_id, 
+      brief_introduce, is_studying, is_excellent, 
       create_at, update_at)
-    values (#{uuid,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{studyCondition,jdbcType=INTEGER}, 
-      #{jobId,jdbcType=INTEGER}, #{briefIntroduce,jdbcType=VARCHAR}, #{isExcellent,jdbcType=INTEGER}, 
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{jobId,jdbcType=INTEGER}, 
+      #{briefIntroduce,jdbcType=VARCHAR}, #{isStudying,jdbcType=INTEGER}, #{isExcellent,jdbcType=INTEGER}, 
       #{createAt,jdbcType=BIGINT}, #{updateAt,jdbcType=BIGINT})
   </insert>
   <insert id="insertSelective" parameterType="com.bpzj.task4.domain.Student">
     insert into student
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="uuid != null">
-        uuid,
+      <if test="id != null">
+        id,
       </if>
       <if test="name != null">
         name,
-      </if>
-      <if test="studyCondition != null">
-        study_condition,
       </if>
       <if test="jobId != null">
         job_id,
@@ -128,25 +125,21 @@
       <if test="briefIntroduce != null">
         brief_introduce,
       </if>
+      <if test="isStudying != null">
+        is_studying,
+      </if>
       <if test="isExcellent != null">
         is_excellent,
       </if>
-      <if test="createAt != null">
         create_at,
-      </if>
-      <if test="updateAt != null">
         update_at,
-      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="uuid != null">
-        #{uuid,jdbcType=INTEGER},
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
       </if>
       <if test="name != null">
         #{name,jdbcType=VARCHAR},
-      </if>
-      <if test="studyCondition != null">
-        #{studyCondition,jdbcType=INTEGER},
       </if>
       <if test="jobId != null">
         #{jobId,jdbcType=INTEGER},
@@ -154,15 +147,14 @@
       <if test="briefIntroduce != null">
         #{briefIntroduce,jdbcType=VARCHAR},
       </if>
+      <if test="isStudying != null">
+        #{isStudying,jdbcType=INTEGER},
+      </if>
       <if test="isExcellent != null">
         #{isExcellent,jdbcType=INTEGER},
       </if>
-      <if test="createAt != null">
-        #{createAt,jdbcType=BIGINT},
-      </if>
-      <if test="updateAt != null">
-        #{updateAt,jdbcType=BIGINT},
-      </if>
+        NOW(),
+        NOW(),
     </trim>
   </insert>
   <select id="countByExample" parameterType="com.bpzj.task4.domain.StudentExample" resultType="java.lang.Long">
@@ -174,20 +166,20 @@
   <update id="updateByExampleSelective" parameterType="map">
     update student
     <set>
-      <if test="record.uuid != null">
-        uuid = #{record.uuid,jdbcType=INTEGER},
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
       </if>
       <if test="record.name != null">
         name = #{record.name,jdbcType=VARCHAR},
-      </if>
-      <if test="record.studyCondition != null">
-        study_condition = #{record.studyCondition,jdbcType=INTEGER},
       </if>
       <if test="record.jobId != null">
         job_id = #{record.jobId,jdbcType=INTEGER},
       </if>
       <if test="record.briefIntroduce != null">
         brief_introduce = #{record.briefIntroduce,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isStudying != null">
+        is_studying = #{record.isStudying,jdbcType=INTEGER},
       </if>
       <if test="record.isExcellent != null">
         is_excellent = #{record.isExcellent,jdbcType=INTEGER},
@@ -205,11 +197,11 @@
   </update>
   <update id="updateByExample" parameterType="map">
     update student
-    set uuid = #{record.uuid,jdbcType=INTEGER},
+    set id = #{record.id,jdbcType=INTEGER},
       name = #{record.name,jdbcType=VARCHAR},
-      study_condition = #{record.studyCondition,jdbcType=INTEGER},
       job_id = #{record.jobId,jdbcType=INTEGER},
       brief_introduce = #{record.briefIntroduce,jdbcType=VARCHAR},
+      is_studying = #{record.isStudying,jdbcType=INTEGER},
       is_excellent = #{record.isExcellent,jdbcType=INTEGER},
       create_at = #{record.createAt,jdbcType=BIGINT},
       update_at = #{record.updateAt,jdbcType=BIGINT}
@@ -223,14 +215,14 @@
       <if test="name != null">
         name = #{name,jdbcType=VARCHAR},
       </if>
-      <if test="studyCondition != null">
-        study_condition = #{studyCondition,jdbcType=INTEGER},
-      </if>
       <if test="jobId != null">
         job_id = #{jobId,jdbcType=INTEGER},
       </if>
       <if test="briefIntroduce != null">
         brief_introduce = #{briefIntroduce,jdbcType=VARCHAR},
+      </if>
+      <if test="isStudying != null">
+        is_studying = #{isStudying,jdbcType=INTEGER},
       </if>
       <if test="isExcellent != null">
         is_excellent = #{isExcellent,jdbcType=INTEGER},
@@ -242,271 +234,17 @@
         update_at = #{updateAt,jdbcType=BIGINT},
       </if>
     </set>
-    where uuid = #{uuid,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.bpzj.task4.domain.Student">
     update student
     set name = #{name,jdbcType=VARCHAR},
-      study_condition = #{studyCondition,jdbcType=INTEGER},
       job_id = #{jobId,jdbcType=INTEGER},
       brief_introduce = #{briefIntroduce,jdbcType=VARCHAR},
+      is_studying = #{isStudying,jdbcType=INTEGER},
       is_excellent = #{isExcellent,jdbcType=INTEGER},
       create_at = #{createAt,jdbcType=BIGINT},
       update_at = #{updateAt,jdbcType=BIGINT}
-    where uuid = #{uuid,jdbcType=INTEGER}
-  </update>
-  <resultMap id="BaseResultMap" type="com.bpzj.task4.domain.Student">
-    <id column="uuid" jdbcType="INTEGER" property="uuid" />
-    <result column="name" jdbcType="VARCHAR" property="name" />
-    <result column="study_condition" jdbcType="INTEGER" property="studyCondition" />
-    <result column="job_id" jdbcType="INTEGER" property="jobId" />
-    <result column="brief_introduce" jdbcType="VARCHAR" property="briefIntroduce" />
-    <result column="is_excellent" jdbcType="INTEGER" property="isExcellent" />
-    <result column="create_at" jdbcType="BIGINT" property="createAt" />
-    <result column="update_at" jdbcType="BIGINT" property="updateAt" />
-  </resultMap>
-  <sql id="Example_Where_Clause">
-    <where>
-      <foreach collection="oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue">
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue">
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue">
-                  and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
-            </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Update_By_Example_Where_Clause">
-    <where>
-      <foreach collection="example.oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue">
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue">
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue">
-                  and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
-            </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Base_Column_List">
-    uuid, name, study_condition, job_id, brief_introduce, is_excellent, create_at, update_at
-  </sql>
-  <select id="selectByExample" parameterType="com.bpzj.task4.domain.StudentExample" resultMap="BaseResultMap">
-    select
-    <if test="distinct">
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    from student
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null">
-      order by ${orderByClause}
-    </if>
-  </select>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from student
-    where uuid = #{uuid,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from student
-    where uuid = #{uuid,jdbcType=INTEGER}
-  </delete>
-  <delete id="deleteByExample" parameterType="com.bpzj.task4.domain.StudentExample">
-    delete from student
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-  </delete>
-  <insert id="insert" parameterType="com.bpzj.task4.domain.Student">
-    insert into student (uuid, name, study_condition, 
-      job_id, brief_introduce, is_excellent, 
-      create_at, update_at)
-    values (#{uuid,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{studyCondition,jdbcType=INTEGER}, 
-      #{jobId,jdbcType=INTEGER}, #{briefIntroduce,jdbcType=VARCHAR}, #{isExcellent,jdbcType=INTEGER}, 
-      #{createAt,jdbcType=BIGINT}, #{updateAt,jdbcType=BIGINT})
-  </insert>
-  <insert id="insertSelective" parameterType="com.bpzj.task4.domain.Student">
-    insert into student
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="uuid != null">
-        uuid,
-      </if>
-      <if test="name != null">
-        name,
-      </if>
-      <if test="studyCondition != null">
-        study_condition,
-      </if>
-      <if test="jobId != null">
-        job_id,
-      </if>
-      <if test="briefIntroduce != null">
-        brief_introduce,
-      </if>
-      <if test="isExcellent != null">
-        is_excellent,
-      </if>
-      <if test="createAt != null">
-        create_at,
-      </if>
-      <if test="updateAt != null">
-        update_at,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="uuid != null">
-        #{uuid,jdbcType=INTEGER},
-      </if>
-      <if test="name != null">
-        #{name,jdbcType=VARCHAR},
-      </if>
-      <if test="studyCondition != null">
-        #{studyCondition,jdbcType=INTEGER},
-      </if>
-      <if test="jobId != null">
-        #{jobId,jdbcType=INTEGER},
-      </if>
-      <if test="briefIntroduce != null">
-        #{briefIntroduce,jdbcType=VARCHAR},
-      </if>
-      <if test="isExcellent != null">
-        #{isExcellent,jdbcType=INTEGER},
-      </if>
-      <if test="createAt != null">
-        #{createAt,jdbcType=BIGINT},
-      </if>
-      <if test="updateAt != null">
-        #{updateAt,jdbcType=BIGINT},
-      </if>
-    </trim>
-  </insert>
-  <select id="countByExample" parameterType="com.bpzj.task4.domain.StudentExample" resultType="java.lang.Long">
-    select count(*) from student
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-  </select>
-  <update id="updateByExampleSelective" parameterType="map">
-    update student
-    <set>
-      <if test="record.uuid != null">
-        uuid = #{record.uuid,jdbcType=INTEGER},
-      </if>
-      <if test="record.name != null">
-        name = #{record.name,jdbcType=VARCHAR},
-      </if>
-      <if test="record.studyCondition != null">
-        study_condition = #{record.studyCondition,jdbcType=INTEGER},
-      </if>
-      <if test="record.jobId != null">
-        job_id = #{record.jobId,jdbcType=INTEGER},
-      </if>
-      <if test="record.briefIntroduce != null">
-        brief_introduce = #{record.briefIntroduce,jdbcType=VARCHAR},
-      </if>
-      <if test="record.isExcellent != null">
-        is_excellent = #{record.isExcellent,jdbcType=INTEGER},
-      </if>
-      <if test="record.createAt != null">
-        create_at = #{record.createAt,jdbcType=BIGINT},
-      </if>
-      <if test="record.updateAt != null">
-        update_at = #{record.updateAt,jdbcType=BIGINT},
-      </if>
-    </set>
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByExample" parameterType="map">
-    update student
-    set uuid = #{record.uuid,jdbcType=INTEGER},
-      name = #{record.name,jdbcType=VARCHAR},
-      study_condition = #{record.studyCondition,jdbcType=INTEGER},
-      job_id = #{record.jobId,jdbcType=INTEGER},
-      brief_introduce = #{record.briefIntroduce,jdbcType=VARCHAR},
-      is_excellent = #{record.isExcellent,jdbcType=INTEGER},
-      create_at = #{record.createAt,jdbcType=BIGINT},
-      update_at = #{record.updateAt,jdbcType=BIGINT}
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.bpzj.task4.domain.Student">
-    update student
-    <set>
-      <if test="name != null">
-        name = #{name,jdbcType=VARCHAR},
-      </if>
-      <if test="studyCondition != null">
-        study_condition = #{studyCondition,jdbcType=INTEGER},
-      </if>
-      <if test="jobId != null">
-        job_id = #{jobId,jdbcType=INTEGER},
-      </if>
-      <if test="briefIntroduce != null">
-        brief_introduce = #{briefIntroduce,jdbcType=VARCHAR},
-      </if>
-      <if test="isExcellent != null">
-        is_excellent = #{isExcellent,jdbcType=INTEGER},
-      </if>
-      <if test="createAt != null">
-        create_at = #{createAt,jdbcType=BIGINT},
-      </if>
-      <if test="updateAt != null">
-        update_at = #{updateAt,jdbcType=BIGINT},
-      </if>
-    </set>
-    where uuid = #{uuid,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.bpzj.task4.domain.Student">
-    update student
-    set name = #{name,jdbcType=VARCHAR},
-      study_condition = #{studyCondition,jdbcType=INTEGER},
-      job_id = #{jobId,jdbcType=INTEGER},
-      brief_introduce = #{briefIntroduce,jdbcType=VARCHAR},
-      is_excellent = #{isExcellent,jdbcType=INTEGER},
-      create_at = #{createAt,jdbcType=BIGINT},
-      update_at = #{updateAt,jdbcType=BIGINT}
-    where uuid = #{uuid,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

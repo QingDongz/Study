@@ -16,28 +16,37 @@ public class StudentService {
 
 
     public long countTotalStudent() {
+        /**
+         * 获取所有学生数量
+         */
         long totalNum;
         // 创建一个条件
         StudentExample example = new StudentExample();
         StudentExample.Criteria criteria = example.createCriteria();
         // StudyCondition 字段不为空就统计，这里统计整数
-        criteria.andStudyConditionIsNotNull();
+        criteria.andIsStudyingIsNotNull();
         totalNum = studentMapper.countByExample(example);
         return totalNum;
     }
 
     public long countWorked() {
+        /**
+         * 获取已经工作的学生数量
+         */
         long workedStudentNum;
         StudentExample example = new StudentExample();
         StudentExample.Criteria criteria = example.createCriteria();
-        // 1表示得到工作。0表示没有工作，还在学习。
-        criteria.andStudyConditionEqualTo(1);
+        // 1表示还在学习，没有工作。0表示有工作，不在学习。
+        criteria.andIsStudyingEqualTo(0);
 
         workedStudentNum = studentMapper.countByExample(example);
         return workedStudentNum;
     }
 
     public List<Student> listExcellent() {
+        /**
+         * 获得 优秀学生的list
+         */
         StudentExample example = new StudentExample();
         StudentExample.Criteria criteria = example.createCriteria();
         criteria.andIsExcellentEqualTo(1);

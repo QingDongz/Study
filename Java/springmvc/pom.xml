@@ -7,7 +7,7 @@
   <version>1.0</version>
     <modules>
         <module>springmvchello</module>
-        <module>springmvctwo</module>
+        <module>modelandview</module>
     </modules>
     <name>springmvc Maven Webapp</name>
   <url>http://maven.apache.org</url>

@@ -69,7 +69,8 @@
 </bean>
     -->
 
-    <!-- 老的写法，dao层对应mapper，使用mybatis这个扫描，生成代理对象，不直接注册到spring容器生成bean
+    <!-- 老的写法，dao层对应mapper，使用mybatis这个扫描，生成代理对象，然后注
+    册到spring容器，而不是直接注册到spring容器生成bean
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
         <property name="basePackage" value="com.bpzj.com.bpzj.web"/>
