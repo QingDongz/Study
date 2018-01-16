@@ -2,6 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.bpzj.task4.dao.StudentMapper">
   <resultMap id="BaseResultMap" type="com.bpzj.task4.domain.Student">
+    <!-- id 表明是主键字段，result 是普通字段-->
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="job_id" jdbcType="INTEGER" property="jobId" />

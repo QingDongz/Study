@@ -3,6 +3,7 @@ package com.bpzj.task4.service;
 import com.bpzj.task4.dao.StudentMapper;
 import com.bpzj.task4.domain.Student;
 import com.bpzj.task4.domain.StudentExample;
+import com.bpzj.task4.domain.StudentWithJobName;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -53,4 +54,9 @@ public class StudentService {
         List<Student> students = studentMapper.selectByExample(example);
         return students;
     }
+
+    public List<StudentWithJobName> listExcellect() {
+
+    }
+
 }
