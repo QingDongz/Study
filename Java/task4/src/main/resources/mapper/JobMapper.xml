@@ -79,7 +79,7 @@
     id, job_id, job_name, introduce, entry_barrier, difficult_level, grow_time, firm_required_num, 
     salary1, salary2, salary3, tips, create_at, update_at
   </sql>
-  <select id="selectByExample" parameterType="com.bpzj.task4.domain.JobExample" resultMap="StudentWithJobNameMap">
+  <select id="selectByExample" parameterType="com.bpzj.task4.domain.JobExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -93,7 +93,7 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="StudentWithJobNameMap">
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from job

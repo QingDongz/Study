@@ -3,6 +3,7 @@ package com.bpzj.task4.controller;
 import com.bpzj.task4.dao.StudentMapper;
 import com.bpzj.task4.domain.Student;
 import com.bpzj.task4.domain.Student;
+import com.bpzj.task4.domain.StudentWithJobName;
 import com.bpzj.task4.service.StudentService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,8 +31,11 @@ public class DemoController {
         long workedNum = studentService.countWorked();
         model.addAttribute("workedNum", workedNum);
 
-        // 优秀学员展示
-        List<Student> excellentStudents = studentService.listExcellent();
+        // 优秀学员展示，缺少职业名称的信息
+        // List<Student> excellentStudents = studentService.listExcellent();
+
+        // 改用这个方法
+        List<StudentWithJobName> excellentStudents = studentService.listExcellect();
         model.addAttribute("students",excellentStudents);
         return "/t10index";
     }

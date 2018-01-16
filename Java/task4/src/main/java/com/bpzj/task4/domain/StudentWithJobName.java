@@ -29,6 +29,4 @@ public class StudentWithJobName {
         this.briefIntroduce = briefIntroduce;
     }
 
-    public StudentWithJobName() {
-    }
 }

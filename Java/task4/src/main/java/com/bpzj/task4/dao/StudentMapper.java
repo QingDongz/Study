@@ -3,6 +3,8 @@ package com.bpzj.task4.dao;
 import com.bpzj.task4.domain.Student;
 import com.bpzj.task4.domain.StudentExample;
 import java.util.List;
+
+import com.bpzj.task4.domain.StudentWithJobName;
 import org.apache.ibatis.annotations.Param;
 
 public interface StudentMapper {
@@ -27,4 +29,8 @@ public interface StudentMapper {
     int updateByPrimaryKeySelective(Student record);
 
     int updateByPrimaryKey(Student record);
+
+    List<StudentWithJobName> selectStudentWithJobName();
+
+    String getJobName(Student student);
 }

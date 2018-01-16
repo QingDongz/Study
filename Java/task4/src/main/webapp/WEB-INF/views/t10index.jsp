@@ -194,7 +194,7 @@
                         <li class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
                             <div>
                                 <img src="${APP_PATH}/statics/t10images/242424.png">
-                                <span>技术顾问:${students.name}</span>
+                                <span>${students.jobName}:${students.name}</span>
                                 <p class="text-left">${students.briefIntroduce}</p>
                             </div>
                         </li>

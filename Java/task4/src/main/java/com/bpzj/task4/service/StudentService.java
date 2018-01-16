@@ -56,7 +56,9 @@ public class StudentService {
     }
 
     public List<StudentWithJobName> listExcellect() {
-
+        List<StudentWithJobName> studentWithJobNames;
+        studentWithJobNames = studentMapper.selectStudentWithJobName();
+        return studentWithJobNames;
     }
 
 }
