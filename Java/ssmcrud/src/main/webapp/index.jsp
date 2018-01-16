@@ -203,6 +203,28 @@
         toPageNum(1);
     });
 
+    function toPageNum(pn) {
+        $.ajax({
+            url:"${APP_PATH}/students",
+            data:"pn="+pn,
+            type:"get",
+            // result 就是 controller 函数返回的对象，处理为json字符串返回
+            success:function (result) {
+                // 显示到 控制台，就是F12，network栏显示
+                // console.log(result)
+                // 1、解析显示学生数据
+                build_student_table(result);
+                // 2、解析显示分页信息
+                bulid_page_info(result);
+                // 3、解析显示分页页码数据，也就是导航条
+                build_page_nav(result);
+                // check_all 的属性设为false
+                $("#check_all").prop("checked",false);
+            }
+        });
+    }
+
+
     // 解析学生数据的函数
     function build_student_table(result) {
         $("#students_table tbody").empty();
@@ -263,7 +285,6 @@
         currentPage = result.backValue.pageInfo.pageNum;
     }
 
-
     function build_page_nav(result) {
         $("#page_nav_area").empty();
         var ul = $("<ul></ul>").addClass("pagination");
@@ -312,27 +333,6 @@
         // 把ul加入到nav
         var navEle = $("<nav></nav>").append(ul);
         navEle.appendTo("#page_nav_area");
-    }
-
-    function toPageNum(pn) {
-        $.ajax({
-            url:"${APP_PATH}/students",
-            data:"pn="+pn,
-            type:"get",
-            // result 就是 controller 函数返回的对象，处理为json字符串返回
-            success:function (result) {
-                // 显示到 控制台，就是F12，network栏显示
-                // console.log(result)
-                // 1、解析显示学生数据
-                build_student_table(result);
-                // 2、解析显示分页信息
-                bulid_page_info(result);
-                // 3、解析显示分页页码数据，也就是导航条
-                build_page_nav(result);
-                // check_all 的属性设为false
-                $("#check_all").prop("checked",false);
-            }
-        });
     }
 
     // 增加 按钮，弹出对话框

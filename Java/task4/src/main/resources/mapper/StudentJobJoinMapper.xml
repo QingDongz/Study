@@ -18,4 +18,5 @@
     FROM student s,job j
     WHERE j.job_id=#{jobId,jdbcType=INTEGER};
   </select>
+
 </mapper>

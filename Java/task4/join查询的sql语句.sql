@@ -24,3 +24,12 @@ INNER JOIN job j
 ON s.job_id=j.job_id AND s.is_excellent=1;
 
 -- 6， 左连接查询
+
+
+-- 9，子连接
+SELECT count(*)
+FROM student
+WHERE is_studying=1 AND job_id=(
+    SELECT job_id 
+    FROM job 
+    WHERE job_name='Java');

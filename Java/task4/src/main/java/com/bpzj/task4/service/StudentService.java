@@ -1,6 +1,7 @@
 package com.bpzj.task4.service;
 
 import com.bpzj.task4.dao.StudentMapper;
+import com.bpzj.task4.domain.Job;
 import com.bpzj.task4.domain.Student;
 import com.bpzj.task4.domain.StudentExample;
 import com.bpzj.task4.domain.StudentWithJobName;
@@ -61,4 +62,13 @@ public class StudentService {
         return studentWithJobNames;
     }
 
+    public long countJobStudyingNumbers(Job job) {
+        Integer jobId = job.getJobId();
+        StudentExample example = new StudentExample();
+        StudentExample.Criteria criteria = example.createCriteria();
+        criteria.andJobIdEqualTo(jobId);
+        criteria.andIsStudyingEqualTo(1);
+        long jobStudyingNumbers= studentMapper.countByExample(example);
+        return jobStudyingNumbers;
+    }
 }

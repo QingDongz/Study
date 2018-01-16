@@ -1,5 +1,4 @@
 <%@ page import="java.util.List" %>
-<%@ page import="java.util.ArrayList" %>
 <%@ page import="java.util.Arrays" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -16,7 +15,6 @@
 
     <link href="https://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" type="text/css">
     <link href="${APP_PATH}/statics/Untitled-3.css" rel="stylesheet" type="text/css">
-    <link href="../../statics/Untitled-3.css" rel="stylesheet" type="text/css">
     <link href="${APP_PATH}/statics/Untitled-1base.css" rel="stylesheet" type="text/css">
 </head>
 <body>
