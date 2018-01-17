@@ -29,7 +29,9 @@
     不能处理的资源交给web 容器 -->
     <mvc:default-servlet-handler/>
     <!--映射动态请求，并支持springMVC一些高级功能：JSR303校验，便捷的ajax，-->
-    <!-- 有了上面那句，必须有这句，否则用 @RequestMapping 注解无作用 -->
+    <!-- <mvc:annotation-driven/>相当于注册了DefaultAnnotationHandlerMapping
+    和AnnotationMethodHandlerAdapter两个bean，配置一些messageconverter，也就是让
+    @Controller注解能够注入到springMVC容器中，以及@RequestMapping等注解-->
     <mvc:annotation-driven/>
 
 

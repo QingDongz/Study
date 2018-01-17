@@ -39,7 +39,7 @@ public class DemoController {
 
         // 改用这个方法
         List<StudentWithJobName> excellentStudents = studentService.listExcellect();
-        model.addAttribute("students",excellentStudents);
+        model.addAttribute("students", excellentStudents);
         return "/t10";
     }
 
@@ -47,7 +47,7 @@ public class DemoController {
     @RequestMapping(value = "/t11")
     public String t11Controller(Model model) {
         // 获得所有职业 列表形式
-        List<Job> jobs= jobService.listAllJob();
+        List<Job> jobs = jobService.listAllJob();
         model.addAttribute("jobs", jobs);
 
         // 获取每个职业，正在学习的人数
@@ -67,5 +67,16 @@ public class DemoController {
     @ResponseBody
     public String t10UseJson() {
         return "";
+    }
+
+    //
+    @RequestMapping(value = "/tiles")
+    public String testTiles() {
+        return "layout1";
+    }
+
+    @RequestMapping(value = "/tiles2")
+    public String layout2() {
+        return "layout2";
     }
 }

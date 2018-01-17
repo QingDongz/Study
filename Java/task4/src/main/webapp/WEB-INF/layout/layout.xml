@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+        "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<!-- 首先创建出 indexLayout.jsp 布局文件，然后在本文件对布局 进行定义 -->
+
+<tiles-definitions>
+
+    <!-- 主布局，indexLayout 就是 首页布局 -->
+    <definition name="indexLayout" template="/WEB-INF/layout/indexLayout.jsp">
+        <!-- put-attribute 用来添加一个jsp到本模板 -->
+
+    </definition>
+
+    <!-- 基本布局 base，extends表示从哪个布局继承 -->
+    <definition name="layout1" extends="indexLayout">
+        <put-attribute name="headCommon" value="/WEB-INF/views/headCommon.jsp" />
+        <put-attribute name="title" value=""/>
+        <put-attribute name="body" value=""/>
+        <put-attribute name="foot" value="/WEB-INF/views/foot.jsp" />
+    </definition>
+
+    <definition name="layout2" extends="indexLayout">
+        <put-attribute name="headCommon" value="/WEB-INF/views/headCommon.jsp" />
+        <put-attribute name="title" value="/WEB-INF/views/title.jsp"/>
+        <put-attribute name="body" value=""/>
+        <put-attribute name="foot" value="/WEB-INF/views/foot.jsp" />
+    </definition>
+
+
+</tiles-definitions>

@@ -11,7 +11,7 @@ repo_folder = '/home/git/repo.git'
 data_folder = '/home/bpzj/data/repo/'
 local_repo = r'E:\repo'
 local_proj_folder = r'E:\OneDrive\GitHubCode\Study\Java'
-project = r'ssmcrud'
+project = r'task4'
 env.user = 'root'
 # 使用 本机私钥登录
 env.key_filename = '~/.ssh/id_rsa'
@@ -53,6 +53,9 @@ def depresin():
     war_path = remote_repo + r"/target/" + project + ".war"
     # 注意空格
     sudo('cp -rf ' + war_path + ' /usr/local/resin/webapps/')
+    # 部署静态文件
+    # 源文件夹 /home/bpzj/data/repo/task4/src/main/webapp/statics
+    # 目标文件夹 /usr/share/nginx/statics/task4/statics
 
 
 def copyfile(parent_src_dir, parent_dst_dir, proj):

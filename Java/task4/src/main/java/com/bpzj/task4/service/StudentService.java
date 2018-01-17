@@ -62,6 +62,7 @@ public class StudentService {
         return studentWithJobNames;
     }
 
+    // 查询正在学习某项职业的学生人数
     public long countJobStudyingNumbers(Job job) {
         Integer jobId = job.getJobId();
         StudentExample example = new StudentExample();
