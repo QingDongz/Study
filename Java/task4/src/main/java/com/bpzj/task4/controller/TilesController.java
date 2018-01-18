@@ -16,8 +16,8 @@ import java.util.List;
 
 
 @Controller
-public class DemoController {
-    private Logger logger = Logger.getLogger(DemoController.class);
+public class TilesController {
+    private Logger logger = Logger.getLogger(TilesController.class);
 
     @Autowired
     private StudentService studentService;
@@ -25,7 +25,7 @@ public class DemoController {
     @Autowired
     private JobService jobService;
 
-    @RequestMapping(value = "/old10")
+    @RequestMapping(value = "/tiles10")
     public String t10Controller(Model model) {
         // 累计学习人数和已经找到工作人数
         long totalNum = studentService.countTotalStudent();
@@ -40,11 +40,11 @@ public class DemoController {
         // 改用这个方法
         List<StudentWithJobName> excellentStudents = studentService.listExcellect();
         model.addAttribute("students", excellentStudents);
-        return "/old/t10";
+        return "10";
     }
 
     // t11首页
-    @RequestMapping(value = "/old11")
+    @RequestMapping(value = "/tiles11")
     public String t11Controller(Model model) {
         // 获得所有职业 列表形式
         List<Job> jobs = jobService.listAllJob();
@@ -58,7 +58,18 @@ public class DemoController {
             jobStudyingNumbers.add(num);
         }
         model.addAttribute("numbers", jobStudyingNumbers);
-        return "/old/t11";
+        return "11";
     }
 
+
+    //
+    @RequestMapping(value = "/tiles")
+    public String testTiles() {
+        return "layout1";
+    }
+
+    @RequestMapping(value = "/tiles2")
+    public String layout2() {
+        return "layout2";
+    }
 }

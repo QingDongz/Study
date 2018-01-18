@@ -1,5 +1,7 @@
 package com.bpzj.task4.domain;
 
+import java.util.Date;
+
 public class Student {
     private Integer id;
 
@@ -81,13 +83,15 @@ public class Student {
         this.updateAt = updateAt;
     }
 
-    public Student(Integer id, String name, Integer jobId, String briefIntroduce, Integer isStudying, Integer isExcellent) {
+    public Student(Integer id, String name, Integer jobId, String briefIntroduce, Integer isStudying, Integer isExcellent, Long createAt, Long updateAt) {
         this.id = id;
         this.name = name;
         this.jobId = jobId;
         this.briefIntroduce = briefIntroduce;
         this.isStudying = isStudying;
         this.isExcellent = isExcellent;
+        this.createAt = createAt;
+        this.updateAt = updateAt;
     }
 
     public Student() {

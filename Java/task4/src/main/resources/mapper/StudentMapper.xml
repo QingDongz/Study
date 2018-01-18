@@ -132,8 +132,12 @@
       <if test="isExcellent != null">
         is_excellent,
       </if>
+      <if test="createAt != null">
         create_at,
+      </if>
+      <if test="updateAt !=null">
         update_at,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -154,8 +158,12 @@
       <if test="isExcellent != null">
         #{isExcellent,jdbcType=INTEGER},
       </if>
-        NOW(),
-        NOW(),
+      <if test="createAt != null">
+        #{createAt,jdbcType=BIGINT},
+      </if>
+      <if test="updateAt !=null">
+        #{updateAt,jdbcType=BIGINT},
+      </if>
     </trim>
   </insert>
   <select id="countByExample" parameterType="com.bpzj.task4.domain.StudentExample" resultType="java.lang.Long">

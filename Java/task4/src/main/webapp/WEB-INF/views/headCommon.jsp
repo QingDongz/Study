@@ -1,3 +1,4 @@
+<%@ page  contentType="text/html;charset=UTF-8" language="java" %>
 <%-- 包含head 部分公共的信息，例如编码格式，js、css文件的引入 --%>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">

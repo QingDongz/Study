@@ -38,6 +38,7 @@
         <property name="maxInMemorySize" value="4096"/>
     </bean>
 
+    <!-- 配置tiles视图解析器，在tiles视图定义文件中定义的视图，交由本视图处理器处理 -->
     <bean id="tilesViewsResolver" class="org.springframework.web.servlet.view.tiles3.TilesViewResolver">
         <!-- order="1"表示优先级，数字越小，解析器的优先级越高 -->
         <property name="order" value="1"/>
@@ -47,7 +48,8 @@
     <bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
         <property name="definitions">
             <list>
-                <value>/WEB-INF/layout/layout.xml</value>
+                <value>/WEB-INF/layout/study.xml</value>
+                <value>/WEB-INF/layout/task4.xml</value>
             </list>
         </property>
     </bean>

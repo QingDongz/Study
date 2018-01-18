@@ -1,6 +1,8 @@
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.Arrays" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
     <meta charset="utf-8">
@@ -69,7 +71,7 @@
 
         <div class="row padding-bottom">
 
-            <c:forEach items="${requestScope.jobs}" var="job">
+            <c:forEach items="${requestScope.jobs}" var="job" varStatus="status">
                 <div class="col-md-4 col-sm-6 col-xs-12 top-margin">
 
                     <div class="warp-border">
@@ -116,21 +118,25 @@
                             <div class="rightWarp">
                                 <div class="rightWarp-class">
                                     <div class="rightWarp-year">0-1年</div>
-                                    <div class="rightWarp-wages">${job.salary1}/月</div>
+                                    <div class="rightWarp-wages">${job.salary1}K/月</div>
                                 </div>
                                 <div class="rightWarp-class">
                                     <div class="rightWarp-year">0-1年</div>
-                                    <div class="rightWarp-wages">${job.salary2}/月</div>
+                                    <div class="rightWarp-wages">${job.salary2}K/月</div>
                                 </div>
                                 <div class="rightWarp-class border-bottom">
                                     <div class="rightWarp-year">0-1年</div>
-                                    <div class="rightWarp-wages">${job.salary3}/月</div>
+                                    <div class="rightWarp-wages">${job.salary3}K/月</div>
                                 </div>
                             </div>
                         </div>
 
                         <div class="warp-class2">
-                            <b class="text-b">有286人正在学</b>
+                            <c:forEach items="${requestScope.numbers}" var="numbers" varStatus="numstatus">
+                                <c:if test="${status.index == numstatus.index}">
+                                    <b class="text-b">有${numbers}人正在学</b>
+                                </c:if>
+                            </c:forEach>
                         </div>
                         <div class="warp-class2">
                             <p class="text-p">提示:${job.tips}</p>
@@ -180,6 +186,7 @@
     $(function () {
 
     })
+
 </script>
 </body>
 </html>

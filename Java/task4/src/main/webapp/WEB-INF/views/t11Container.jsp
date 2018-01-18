@@ -1,57 +1,10 @@
-<%@ page import="java.util.List" %>
-<%@ page import="java.util.Arrays" %>
-<%@ page import="com.bpzj.task4.domain.Student" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="time" uri="/timeTag" %>
 
-<html>
-<head>
-    <meta charset="utf-8">
-    <title>无标题文档</title>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport" charset="UTF-8">
     <%
         pageContext.setAttribute("APP_PATH", request.getContextPath());
     %>
-    <link href="https://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-    <script src="https://cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-    <script src="https://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
-    <link href="${APP_PATH}/statics/t11.css" rel="stylesheet" type="text/css">
-    <link href="${APP_PATH}/statics/base.css" rel="stylesheet" type="text/css">
-</head>
-<body>
-<header>
-    <div class="top container">
-        <p class="hidden-xs">客服热线：010-594-78634</p>
-        <img src="${APP_PATH}/statics/t11images/12321.gif">
-    </div>
-
-    <div role="navigation" class="nav1 navbar navbar-default">
-        <div class="container">
-            <div class="header-logo">
-                <div class="logo-middle"><img src="${APP_PATH}/statics/t11images/logo.png"></div>
-            </div>
-            <div class="navbar-header marginTop">
-                <button data-target="#example-navbar-collapse" data-toggle="collapse" class="navbar-toggle" type="button">
-                    <span class="sr-only">切换导航</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-            </div>
-
-            <div id="example-navbar-collapse" class=" collapse navbar-collapse">
-                <ul class="nav navbar-nav">
-                    <a href=""><li>首 页</li></a>
-                    <a href=""><li class="border">职 业</li></a>
-                    <a href=""><li>推 荐</li></a>
-                    <a href=""><li>关 于</li></a>
-                </ul>
-            </div>
-        </div>
-
-    </div>
-
-</header>
 
     <div class="container">
 
@@ -81,6 +34,7 @@
                             <div class="text">
                                 <h4 class="">${job.jobName}</h4>
                                 <p class="text-present">${job.introduce}</p>
+                                <p class="text-present"><time:time value="${job.createAt }" /></p>
                             </div>
                         </div>
 
@@ -155,39 +109,3 @@
         </div>
 
     </div>
-
-    <!--footer-->
-<footer class="footer">
-    <div class="container height">
-        <div class="row">
-            <div class="text-left col-sm-4">
-                <span>技能树 &mdash; 改变你我</span>
-                <p class="bottom">关于我们 | 联系我们 | 合作企业</p>
-            </div>
-            <div class="text-center col-sm-4">
-                <p>旗下网站</p>
-                <span>草船云孵化器     最强IT特训营</span>
-                <span>葡萄藤轻游戏     桌游精灵</span>
-            </div>
-            <div class="text-right col-sm-4">
-                <p>微信公众号</p>
-                <img src="${APP_PATH}/statics/t11images/2524.jpg">
-            </div>
-        </div>
-
-    </div>
-
-    <div class="footer-bottom">
-        Copyright &copy; 2015技能树 www.jnshu.com  All Rights Reserved | 京ICP
-    </div>
-</footer>
-
-<%-- 生成职业信息的脚本 --%>
-<script type="text/javascript">
-    $(function () {
-
-    })
-
-</script>
-</body>
-</html>

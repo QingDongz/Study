@@ -76,4 +76,12 @@
     <param-value>classpath:log4j.properties</param-value>
   </context-param>
 
+  <!-- 自定义tag标签 -->
+  <jsp-config>
+    <taglib>
+      <taglib-uri>/timeTag</taglib-uri>
+      <taglib-location>/tld/timeTag.tld</taglib-location>
+    </taglib>
+  </jsp-config>
+
 </web-app>

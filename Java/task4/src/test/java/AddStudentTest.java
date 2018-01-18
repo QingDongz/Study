@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import java.util.Date;
+
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:applicationContext.xml")
@@ -21,9 +23,11 @@ public class AddStudentTest {
     @Test
     public void addStudent() {
         StudentMapper studentMapper = sqlSession.getMapper(StudentMapper.class);
-        for (int i=1;i<5;i++) {
+        for (int i = 8; i < 10; i++) {
+            Date date = new Date();
+            Long createTime = date.getTime();
             Student student = new Student
-                    (i, "罗大佑", 1, "一声梧叶一声秋", i % 2, i % 2);
+                    (i, "罗大佑", 1, "一声梧叶一声秋", i % 2, i % 2, createTime, createTime);
             studentMapper.insertSelective(student);
         }
 

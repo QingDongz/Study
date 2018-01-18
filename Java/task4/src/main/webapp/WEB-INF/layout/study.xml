@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+        "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<!--==================== 理解 =====================-->
+<!--
+    首先要明白，这个文件中有很多 definition ，每个 definition 创建出来的东西
+    是 视图 ，这些 视图 交由 tiles 的视图解析器进行解析， 所以叫它 视图定义文件
+-->
+
+<tiles-definitions>
+
+    <!-- 一个视图定义，得到视图，名称为 name 的值，使用哪个布局可以用 template= 的值指定 -->
+    <definition name="studyLayout" template="/WEB-INF/layout/studyLayout.jsp">
+        <!-- 上一句 template= 表示使用 studyLayout.jsp 这个布局文件，就先找到这个布局文件
+        布局文件中有这样一句  <tiles:insertAttribute name="headCommon" ignore="true"/> 代表
+        在这个 studyLayout.jsp 布局文件中可以插入内容，插入内容时的变量名称就是 headCommon
+
+        ignore="true" 意思是在视图定义中如果没有插入，直接忽略而不报错，例如这个 studyLayout
+        视图定义就没有全部插入，用户如果请求studyLayout视图的话，解析时也不会报错
+
+        put-attribute  的意义就是向这个布局文件插入内容
+         具体来说，布局文件指定了 变量名称就是 headCommon，那么在本定义文件中，就可以把
+         另外一个含有具体内容的jsp文件插入到 studyLayout.jsp 这个布局文件中。
+
+         例如下面这句就是把 /WEB-INF/views/headCommon.jsp 这个文件插入到 studyLayout.jsp
+         这个布局文件中，插入的地方，就是 headCommon 所在的地方 -->
+        <put-attribute name="headCommon" value="/WEB-INF/views/headCommon.jsp" />
+    </definition>
+
+    <!-- layout1 视图定义，extends表示从哪个布局继承 -->
+    <definition name="layout1" extends="studyLayout">
+        <put-attribute name="headCommon" value="/WEB-INF/views/headCommon.jsp" />
+        <put-attribute name="title" value=""/>
+        <put-attribute name="body" value=""/>
+        <put-attribute name="foot" value="/WEB-INF/study/foot.jsp" />
+    </definition>
+
+    <!-- layout2 视图定义，extends表示从哪个布局继承 -->
+    <definition name="layout2" extends="studyLayout">
+        <put-attribute name="headCommon" value="/WEB-INF/views/headCommon.jsp" />
+        <!-- 如果布局文件中没有 title属性，下面这一句，内容是放不进去的 -->
+        <put-attribute name="title" value="/WEB-INF/study/title.jsp"/>
+        <put-attribute name="body" value=""/>
+        <put-attribute name="foot" value="/WEB-INF/study/foot.jsp" />
+    </definition>
+
+</tiles-definitions>
