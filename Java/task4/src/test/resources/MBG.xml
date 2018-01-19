@@ -49,8 +49,8 @@
         </javaClientGenerator>
 
         <!-- 为数据库表指定生成策略 -->
-        <table tableName="student" domainObjectName="Student"/>
-        <table tableName="job" domainObjectName="Job"/>
+        <!--<table tableName="student" domainObjectName="Student"/>-->
+        <table tableName="user" domainObjectName="User"/>
 
     </context>
 </generatorConfiguration>

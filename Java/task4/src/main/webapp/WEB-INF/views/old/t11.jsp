@@ -6,7 +6,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>无标题文档</title>
+    <title>首页</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport" charset="UTF-8">
     <%
         pageContext.setAttribute("APP_PATH", request.getContextPath());
@@ -16,41 +16,48 @@
     <script src="https://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
     <link href="${APP_PATH}/statics/t11.css" rel="stylesheet" type="text/css">
     <link href="${APP_PATH}/statics/base.css" rel="stylesheet" type="text/css">
+    <link href="${APP_PATH}/statics/Untitled-3.css" rel="stylesheet" type="text/css">
+    <link href="${APP_PATH}/statics/Untitled-1base.css" rel="stylesheet" type="text/css">
+
 </head>
 <body>
-<header>
-    <div class="top container">
-        <p class="hidden-xs">客服热线：010-594-78634</p>
-        <img src="${APP_PATH}/statics/t11images/12321.gif">
+
+<div class="container  hidden-xs">
+    <div class="row header-top">
+        <p class="col-xs-12 col-sm-6 col-md-6 col-lg-6">客服电话:010-594-78634</p>
+        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 text-right">
+            <div>
+                <a href="#" target="_blank"> <img alt=""  src="${APP_PATH}/statics/t10images/54537.png"></a>
+                <a href="#" target="_blank"><img alt=""  src="${APP_PATH}/statics/t10images/45678678.png"></a>
+                <a href="#" target="_blank"> <img alt=""  src="${APP_PATH}/statics/t10images/54375483543.png"></a>
+            </div>
+        </div>
     </div>
+</div>
 
-    <div role="navigation" class="nav1 navbar navbar-default">
-        <div class="container">
-            <div class="header-logo">
-                <div class="logo-middle"><img src="${APP_PATH}/statics/t11images/logo.png"></div>
-            </div>
-            <div class="navbar-header marginTop">
-                <button data-target="#example-navbar-collapse" data-toggle="collapse" class="navbar-toggle" type="button">
-                    <span class="sr-only">切换导航</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-            </div>
-
-            <div id="example-navbar-collapse" class=" collapse navbar-collapse">
-                <ul class="nav navbar-nav">
-                    <a href=""><li>首 页</li></a>
-                    <a href=""><li class="border">职 业</li></a>
-                    <a href=""><li>推 荐</li></a>
-                    <a href=""><li>关 于</li></a>
-                </ul>
-            </div>
+<nav class="navbar navbar-default">
+    <div class="container">
+        <div class="navbar-header">
+            <a href="#" class="navbar-brand">
+                <img src="${APP_PATH}/statics/t10images/logo.png" alt="Brand" class="img-responsive">
+            </a>
+            <button data-target="#open-nav" data-toggle="collapse" class="navbar-toggle btn-primary collapsed" aria-expanded="false">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+        <div id="open-nav" class="navbar-collapse collapse" aria-expanded="false" style="height: 1px;">
+            <ul class="nav navbar-nav navbar-right text-center list-inline">
+                <li><a href="${APP_PATH}/old10">首页</a></li>
+                <li><a href="${APP_PATH}/old11">职业</a></li>
+                <li><a href="${APP_PATH}/">登录或注册</a></li>
+                <li><a href="">注销</a></li>
+            </ul>
         </div>
 
     </div>
-
-</header>
+</nav>
 
     <div class="container">
 
@@ -58,11 +65,11 @@
         <div class="nav-bar">
             <span class="">方向：</span>
             <a class="nav-bar-a a-selected" href="">全部</a>
-            <a class="nav-bar-a" href="">前端开发</a>
-            <a class="nav-bar-a" href="">后端开发</a>
-            <a class="nav-bar-a" href="">移动开发</a>
-            <a class="nav-bar-a" href="">整站开发</a>
-            <a class="nav-bar-a" href="">运营维护</a>
+            <a class="nav-bar-a" style="color: black" href="">前端开发</a>
+            <a class="nav-bar-a" style="color: black" href="">后端开发</a>
+            <a class="nav-bar-a" style="color: black" href="">移动开发</a>
+            <a class="nav-bar-a" style="color: black" href="">整站开发</a>
+            <a class="nav-bar-a" style="color: black" href="">运营维护</a>
         </div>
 
         <div class="caption">
