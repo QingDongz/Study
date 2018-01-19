@@ -55,7 +55,7 @@ public class UserService {
         }
         return userNameExist;
     }
-    
+
     /**
      * 检查 登录时 密码 是否正确
      * @param user 登录用户传入的 数据，只有 用户名 和 密码
@@ -75,7 +75,11 @@ public class UserService {
         return loginFlag;
     }
 
-
+    /**
+     * 保存用户到数据库，注册时调用
+     * @param user
+     * @return
+     */
     public int insertUser(User user) {
         String salt = getSalt();
         user.setUserKey(salt);
@@ -86,6 +90,7 @@ public class UserService {
         Long time = date.getTime();
         user.setCreateAt(time);
         user.setUpdateAt(time);
+        userMapper.insert(user);
         return userMapper.insert(user);
     }
 }

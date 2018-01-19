@@ -181,7 +181,7 @@
                     <li class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
                         <span class="up-1 text-center">8</span>
                         <p class="up-2">完成职业 技能，升级业界大牛</p>
-                        <span class="up-3 invisible"></span>
+                        <span class="up-3"></span>
                     </li>
                 </ul>
             </div>
