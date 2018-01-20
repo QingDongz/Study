@@ -1,21 +1,25 @@
 package com.bpzj.task4.service;
 
+import com.bpzj.task4.Util.CookieUtil;
+import com.bpzj.task4.Util.JwtUtil;
 import com.bpzj.task4.dao.UserMapper;
 import com.bpzj.task4.domain.User;
 import com.bpzj.task4.domain.UserExample;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.util.Date;
 import java.util.List;
 
 import static com.bpzj.task4.Util.SHA256Util.getSHA256Str;
 import static com.bpzj.task4.Util.SHA256Util.getSalt;
+import static com.bpzj.task4.service.Constant.COOKIE_NAME;
+import static com.bpzj.task4.service.Constant.JWT_SECRET_KEY;
 
 @Service
 public class UserService {
-
-
 
     @Autowired
     private UserMapper userMapper;
@@ -26,7 +30,7 @@ public class UserService {
      * @return 如果有User，返回User，没有的话，抛出错误
      * @throws Exception 不存在 对应 的 User
      */
-    private User selectByUserName(String userName) throws Exception{
+    public User selectByUserName(String userName) throws Exception{
         UserExample example = new UserExample();
         UserExample.Criteria criteria = example.createCriteria();
         criteria.andUserNameEqualTo(userName);
@@ -61,17 +65,32 @@ public class UserService {
      * @param user 登录用户传入的 数据，只有 用户名 和 密码
      * @return 检验值，true 或 false
      */
-    public boolean checkLogin(User user) {
+    public boolean checkLogin(User user, HttpServletResponse response, HttpSession session) {
         boolean loginFlag = false;
+        User savedUser=null;
         try {
             // 从数据库中获取保存的用户
-            User savedUser = selectByUserName(user.getUserName());
+            savedUser = selectByUserName(user.getUserName());
             // 对比 加密后的 密码
             loginFlag = savedUser.getPassword().equals(getSHA256Str(user.getPassword() + savedUser.getUserKey()));
 
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        // 如果成功，设置 cookie, session
+        if (loginFlag) {
+            // 用JwtUtil生成token，秘钥为数据库中的 盐值，加密信息为 用户名
+            String token = JwtUtil.getJwtToken(savedUser.getUserName(),JWT_SECRET_KEY);
+            // 创建cookie，把 token 放到 cookie中，指定cookieName 为"key"
+            CookieUtil.creatCookie(response, COOKIE_NAME, token, 60 * 60 * 3);
+
+            // 设置session
+            session.setAttribute("userName",savedUser.getUserName());
+            // 这里时间单位 是 秒，设为10分钟
+            session.setMaxInactiveInterval(60*10);
+        }
+
         return loginFlag;
     }
 
@@ -90,7 +109,6 @@ public class UserService {
         Long time = date.getTime();
         user.setCreateAt(time);
         user.setUpdateAt(time);
-        userMapper.insert(user);
         return userMapper.insert(user);
     }
 }

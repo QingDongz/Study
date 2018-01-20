@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -31,8 +32,7 @@ public class SignAndLogin {
         if (userService.isUserNameExist(user.getUserName())) {
             return ResponseMsg.fail();
         } else {
-            int result = userService.insertUser(user);
-            System.out.println("result is"+result);
+            userService.insertUser(user);
             return ResponseMsg.success();
         }
     }
@@ -45,22 +45,27 @@ public class SignAndLogin {
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     @ResponseBody
     public ResponseMsg login(HttpServletResponse response, HttpSession session, User user) {
-        if (userService.checkLogin(user)) {
-            String code = SHA256Util.getSHA256Str(SHA256Util.getSalt()).toUpperCase();
-            Cookie cookie = new Cookie("key", code);
-            cookie.setMaxAge(60*60*24);
-            cookie.setPath("/");
-            response.addCookie(cookie);
-            session.setAttribute("key",code);
-            session.setMaxInactiveInterval(60*60*24);
+        if (userService.checkLogin(user, response)) {
             return ResponseMsg.success();
         } else {
             return ResponseMsg.fail();
         }
     }
 
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    public String index() {
+        return "";
+    }
 
-    public ResponseMsg signOut() {
+    @RequestMapping(value = "/u/login")
+    @ResponseBody
+    public ResponseMsg loginStatus() {
+        return ResponseMsg.success();
+    }
+
+    @RequestMapping(value = "/signout")
+    public ResponseMsg signOut(HttpServletRequest request) {
+        request.getSession();
         return ResponseMsg.success();
     }
 

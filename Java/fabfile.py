@@ -51,7 +51,7 @@ def depresin():
     run("""cd {} && git pull """.format(data_folder))
     # 手动拼接出 服务器上项目的路径
     remote_repo = data_folder + project
-    sudo('cd %s && mvn clean package' % remote_repo)
+    sudo('cd %s && mvn clean package -Dmaven.test.skip=true' % remote_repo)
     # 自己手动拼接字符串，拼出war包的路径
     war_path = remote_repo + r"/target/" + project + ".war"
     # 注意空格

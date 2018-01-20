@@ -125,6 +125,11 @@
             <a> </a>
             <button type="button" class="btn btn-default btn-lg" id="login_btn">登录</button>
         </div>
+            <h1><br/></h1>
+        <div class="col-md-12 text-center ">
+            <button type="button" class="btn btn-default btn-lg" id="jnshu_index">访问首页</button>
+            <button type="button" class="btn btn-default btn-lg" id="jnshu_u_jobs">访问职业列表</button>
+        </div>
     </div>
 
 </div>
@@ -245,7 +250,6 @@
                     // 跳转
                     $(location).attr('href', "${APP_PATH}/old10");
                 }else{
-                    show_validate_msg("#login_modal_name_input","error","用户名或密码错误");
                     return false;
                 }
 
@@ -268,18 +272,6 @@
         return true;
     }
 
-    function form_validate_qq(element) {
-        var stdQQ= $(element).val();
-        var regQQ=/(^[0-9]{5,11}$)/;
-        // alert(regQQ.test(stdQQ));
-        if (regQQ.test(stdQQ)){
-            show_validate_msg(element,"success","");
-        } else{
-            show_validate_msg(element,"error","QQ号：5-11数字");
-            return false;
-        }
-        return true;
-    }
 
     // 抽取校验的方法
     function show_validate_msg(element, status, msg) {
@@ -296,6 +288,26 @@
 
     }
 
+    $("#jnshu_u_jobs").click(function () {
+        $.ajax({
+            url:"${APP_PATH}/u/login",
+            type:"GET",
+            // result 是controller函数返回对象（序列化后的json字符）
+            success:function (result) {
+                if(result.code==600){
+                    // 使用抽取的函数 显示提示信息
+                    alert("你还没有登录，请登录后再试");
+                }else{
+                    $(location).attr('href', "${APP_PATH}/u/jobs");
+                }
+
+            }
+        });
+    })
+
+    $("#jnshu_index").click(function () {
+        $(location).attr('href', "${APP_PATH}/old10");
+    })
 
 </script>
 

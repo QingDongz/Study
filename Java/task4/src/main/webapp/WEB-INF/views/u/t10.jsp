@@ -48,9 +48,14 @@
         <div id="open-nav" class="navbar-collapse collapse" aria-expanded="false" style="height: 1px;">
             <ul class="nav navbar-nav navbar-right text-center list-inline">
                 <li><a href="${APP_PATH}/old10">首页</a></li>
-                <li><a href="${APP_PATH}/old11">职业</a></li>
-                <li><a href="${APP_PATH}/">登录或注册</a></li>
-                <li><a href="${APP_PATH}/">注销</a></li>
+                <li><a href="${APP_PATH}/u/jobs">职业</a></li>
+                <c:if test="${requestScope.userName == \"\"}">
+                    <li><a href="${APP_PATH}/">登录或注册</a></li>
+                </c:if>
+                <c:if test="${requestScope.userName != \"\"}">
+                    <li><a href="#">用户：${requestScope.userName}</a></li>
+                    <li><a href="${APP_PATH}/">注销</a></li>
+                </c:if>
             </ul>
         </div>
 

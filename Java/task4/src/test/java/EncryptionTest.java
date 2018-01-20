@@ -1,21 +1,10 @@
 import com.bpzj.task4.Util.DesUtil;
-import org.junit.Before;
 import org.junit.Test;
 
-import javax.crypto.KeyGenerator;
-import javax.crypto.SecretKey;
+import static com.bpzj.task4.Util.JwtUtil.getJwtToken;
+import static com.bpzj.task4.Util.JwtUtil.jwtDecrypt;
 
 public class EncryptionTest {
-
-    @Before
-    public static byte[] initKey() throws Exception {
-        KeyGenerator keyGenerator = KeyGenerator.getInstance("DES");
-        keyGenerator.init(56); // 56 可填可不填
-
-        SecretKey secretKey = keyGenerator.generateKey();
-        return secretKey.getEncoded();
-    }
-
 
     @Test
     public void testDES() {
@@ -50,6 +39,18 @@ public class EncryptionTest {
         }catch (Exception e){
             e.printStackTrace();
         }
+    }
+
+    @Test
+    public void testJwt() {
+        String token = getJwtToken("writeKey", "hello zhwy");
+        System.out.println(token);
+
+        // 用正确秘钥解密，得到正确信息
+        System.out.println(jwtDecrypt("writeKey", token));
+        // 用错误秘钥解密，报错
+        System.out.println(jwtDecrypt("wrongKey", token));
+
     }
 
 }
