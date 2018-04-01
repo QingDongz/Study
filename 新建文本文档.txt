@@ -1,0 +1,11 @@
+create table student(
+id varchar(20) primary key,
+name varchar(20),
+qq varchar(20),
+arrive varchar(20),
+school varchar(20),
+no varchar(20),
+link varchar(20),
+wish varchar(20),
+brother varchar(20)
+);
